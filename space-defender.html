@@ -2,163 +2,463 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Games - Play Free Browser Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Space Defender - Online Game</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3e 50%, #0f0f2e 100%);
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
             color: white;
+            overflow: hidden;
         }
         #header {
+            width: 100%;
+            padding: 15px;
             text-align: center;
-            padding: 40px 20px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.5);
         }
         h1 {
-            font-size: 3.5em;
-            background: linear-gradient(135deg, #4ecca3, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-        #subtitle {
-            color: #aaa;
-            font-size: 1.2em;
-        }
-        #games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .game-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            border: 2px solid rgba(78, 204, 163, 0.3);
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            display: block;
-        }
-        .game-card:hover {
-            transform: translateY(-10px);
-            border-color: #4ecca3;
-            box-shadow: 0 20px 40px rgba(78, 204, 163, 0.3);
-        }
-        .game-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
-        .game-title {
-            font-size: 1.8em;
-            margin-bottom: 10px;
             color: #4ecca3;
+            font-size: 2em;
+            text-shadow: 0 0 20px rgba(78, 204, 163, 0.5);
         }
-        .game-desc {
-            color: #aaa;
-            font-size: 1em;
-            line-height: 1.5;
-        }
-        .game-features {
-            margin-top: 15px;
+        #stats {
             display: flex;
-            flex-wrap: wrap;
+            gap: 20px;
             justify-content: center;
-            gap: 8px;
+            margin-top: 8px;
+            font-size: 0.9em;
         }
-        .feature-tag {
-            background: rgba(78, 204, 163, 0.2);
-            color: #4ecca3;
-            padding: 5px 12px;
-            border-radius: 15px;
+        .stat { color: #fff; }
+        .stat span { color: #ffd700; font-weight: bold; }
+        #game-container {
+            position: relative;
+            margin: 10px auto;
+        }
+        canvas {
+            border: 3px solid #4ecca3;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(78, 204, 163, 0.3);
+        }
+        #controls {
+            margin-top: 10px;
+            text-align: center;
+            color: #aaa;
             font-size: 0.85em;
         }
-        #footer {
-            text-align: center;
-            padding: 40px;
-            color: #666;
+        .key {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #fff;
+            font-family: monospace;
         }
-        #footer a {
+        #start-screen, #game-over-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        #game-over-screen { display: none; }
+        .screen-title {
             color: #4ecca3;
-            text-decoration: none;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(78, 204, 163, 0.8);
+        }
+        .screen-text {
+            color: #fff;
+            font-size: 1em;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 350px;
+            line-height: 1.5;
+        }
+        .btn {
+            background: linear-gradient(135deg, #4ecca3, #3db892);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(78, 204, 163, 0.5);
+        }
+        #final-score {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
     <div id="header">
-        <h1>🎮 ONLINE GAMES</h1>
-        <p id="subtitle">Play free browser games - no downloads required!</p>
+        <h1>🚀 SPACE DEFENDER</h1>
+        <div id="stats">
+            <div class="stat">Score: <span id="score">0</span></div>
+            <div class="stat">Level: <span id="level">1</span></div>
+            <div class="stat">Lives: <span id="lives">❤️❤️❤️</span></div>
+        </div>
     </div>
     
-    <div id="games-grid">
-        <a href="space-defender.html" class="game-card">
-            <div class="game-icon">🚀</div>
-            <div class="game-title">Space Defender</div>
-            <div class="game-desc">Defend Earth from alien invasions in this classic space shooter!</div>
-            <div class="game-features">
-                <span class="feature-tag">Shooter</span>
-                <span class="feature-tag">Action</span>
-                <span class="feature-tag">Power-ups</span>
-            </div>
-        </a>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="600" height="500"></canvas>
         
-        <a href="tetris.html" class="game-card">
-            <div class="game-icon">🧱</div>
-            <div class="game-title">Tetris</div>
-            <div class="game-desc">The classic block-stacking puzzle game. Clear lines and level up!</div>
-            <div class="game-features">
-                <span class="feature-tag">Puzzle</span>
-                <span class="feature-tag">Classic</span>
-                <span class="feature-tag">Levels</span>
+        <div id="start-screen">
+            <div class="screen-title">SPACE DEFENDER</div>
+            <div class="screen-text">
+                Defend Earth from alien invasion!<br><br>
+                Use arrow keys or A/D to move<br>
+                SPACE to shoot<br><br>
+                Collect power-ups and survive!
             </div>
-        </a>
+            <button class="btn" onclick="startGame()">START GAME</button>
+        </div>
         
-        <a href="snake.html" class="game-card">
-            <div class="game-icon">🐍</div>
-            <div class="game-title">Snake</div>
-            <div class="game-desc">Grow your snake by eating food. Don't hit the walls or yourself!</div>
-            <div class="game-features">
-                <span class="feature-tag">Arcade</span>
-                <span class="feature-tag">Classic</span>
-                <span class="feature-tag">3 Difficulties</span>
-            </div>
-        </a>
-        
-        <a href="pong.html" class="game-card">
-            <div class="game-icon">🏓</div>
-            <div class="game-title">Pong</div>
-            <div class="game-desc">The original paddle game. Beat the AI in this retro classic!</div>
-            <div class="game-features">
-                <span class="feature-tag">Retro</span>
-                <span class="feature-tag">VS AI</span>
-                <span class="feature-tag">3 Difficulties</span>
-            </div>
-        </a>
-        
-        <a href="memory.html" class="game-card">
-            <div class="game-icon">🧠</div>
-            <div class="game-title">Memory Game</div>
-            <div class="game-desc">Test your memory! Match pairs of cute animal emojis.</div>
-            <div class="game-features">
-                <span class="feature-tag">Memory</span>
-                <span class="feature-tag">3 Difficulties</span>
-                <span class="feature-tag">Timer</span>
-            </div>
-        </a>
+        <div id="game-over-screen">
+            <div class="screen-title">GAME OVER</div>
+            <div id="final-score">Score: 0</div>
+            <button class="btn" onclick="restartGame()">PLAY AGAIN</button>
+        </div>
     </div>
     
-    <div id="footer">
-        <p>Made with ❤️ by OpenClaw Agent</p>
-        <p><a href="https://github.com/aiuserchao/onlinegame">View on GitHub</a></p>
+    <div id="controls">
+        <p><span class="key">←</span> <span class="key">→</span> or <span class="key">A</span> <span class="key">D</span> to move • <span class="key">SPACE</span> to shoot</p>
     </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Game state
+        let gameRunning = false;
+        let score = 0;
+        let level = 1;
+        let lives = 3;
+        
+        // Player
+        const player = {
+            x: canvas.width / 2 - 25,
+            y: canvas.height - 70,
+            width: 50,
+            height: 40,
+            speed: 6
+        };
+        
+        // Game objects
+        let bullets = [];
+        let enemies = [];
+        let particles = [];
+        let powerUps = [];
+        let stars = [];
+        
+        // Input
+        const keys = {};
+        
+        // Initialize stars
+        for (let i = 0; i < 80; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                speed: Math.random() * 0.5 + 0.1
+            });
+        }
+        
+        // Event listeners
+        document.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+            if (e.key === ' ' && gameRunning) shoot();
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+        
+        function shoot() {
+            bullets.push({
+                x: player.x + player.width / 2 - 3,
+                y: player.y,
+                width: 6,
+                height: 12,
+                speed: 10
+            });
+        }
+        
+        function createEnemy() {
+            const types = ['basic', 'fast', 'tank'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            let enemy = {
+                x: Math.random() * (canvas.width - 40),
+                y: -40,
+                width: 40,
+                height: 40,
+                type: type,
+                hp: 1
+            };
+            
+            switch(type) {
+                case 'basic':
+                    enemy.speed = 2 + level * 0.2;
+                    enemy.color = '#e74c3c';
+                    enemy.score = 10;
+                    break;
+                case 'fast':
+                    enemy.speed = 4 + level * 0.3;
+                    enemy.width = 30;
+                    enemy.height = 30;
+                    enemy.color = '#9b59b6';
+                    enemy.score = 20;
+                    break;
+                case 'tank':
+                    enemy.speed = 1 + level * 0.1;
+                    enemy.width = 50;
+                    enemy.height = 50;
+                    enemy.hp = 3;
+                    enemy.color = '#e67e22';
+                    enemy.score = 50;
+                    break;
+            }
+            
+            enemies.push(enemy);
+        }
+        
+        function createParticles(x, y, color, count = 8) {
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 6,
+                    vy: (Math.random() - 0.5) * 6,
+                    life: 25,
+                    color: color,
+                    size: Math.random() * 3 + 2
+                });
+            }
+        }
+        
+        function update() {
+            if (!gameRunning) return;
+            
+            // Move player
+            if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
+                player.x -= player.speed;
+            }
+            if (keys['ArrowRight'] || keys['d'] || keys['D']) {
+                player.x += player.speed;
+            }
+            
+            // Keep player in bounds
+            player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+            
+            // Update bullets
+            bullets = bullets.filter(bullet => {
+                bullet.y -= bullet.speed;
+                return bullet.y > -20;
+            });
+            
+            // Update enemies
+            enemies.forEach(enemy => {
+                enemy.y += enemy.speed;
+                
+                // Check collision with player
+                if (rectIntersect(player, enemy)) {
+                    lives--;
+                    createParticles(player.x + player.width/2, player.y + player.height/2, '#ff0000', 12);
+                    enemy.y = canvas.height + 100;
+                    
+                    if (lives <= 0) {
+                        gameOver();
+                    }
+                }
+            });
+            
+            // Remove off-screen enemies
+            enemies = enemies.filter(enemy => {
+                if (enemy.y > canvas.height) {
+                    lives--;
+                    if (lives <= 0) gameOver();
+                    return false;
+                }
+                return true;
+            });
+            
+            // Check bullet-enemy collisions
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                for (let j = enemies.length - 1; j >= 0; j--) {
+                    if (rectIntersect(bullets[i], enemies[j])) {
+                        enemies[j].hp--;
+                        createParticles(enemies[j].x + enemies[j].width/2, enemies[j].y + enemies[j].height/2, enemies[j].color);
+                        
+                        if (enemies[j].hp <= 0) {
+                            score += enemies[j].score;
+                            enemies.splice(j, 1);
+                        }
+                        
+                        bullets.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            
+            // Update particles
+            particles = particles.filter(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life--;
+                return p.life > 0;
+            });
+            
+            // Update stars
+            stars.forEach(star => {
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+            });
+            
+            // Spawn enemies
+            if (Math.random() < 0.02 + level * 0.003) {
+                createEnemy();
+            }
+            
+            // Level up
+            if (score > level * 300) {
+                level++;
+            }
+            
+            updateUI();
+        }
+        
+        function rectIntersect(r1, r2) {
+            return !(r2.x > r1.x + r1.width || 
+                     r2.x + r2.width < r1.x || 
+                     r2.y > r1.y + r1.height || 
+                     r2.y + r2.height < r1.y);
+        }
+        
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = 'rgba(10, 10, 26, 0.3)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw stars
+            stars.forEach(star => {
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.3})`;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            if (!gameRunning) return;
+            
+            // Draw player (spaceship)
+            ctx.fillStyle = '#4ecca3';
+            ctx.beginPath();
+            ctx.moveTo(player.x + player.width/2, player.y);
+            ctx.lineTo(player.x + player.width, player.y + player.height);
+            ctx.lineTo(player.x + player.width/2, player.y + player.height - 10);
+            ctx.lineTo(player.x, player.y + player.height);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw engine flame
+            ctx.fillStyle = '#ff6b35';
+            ctx.beginPath();
+            ctx.moveTo(player.x + player.width/2 - 5, player.y + player.height - 5);
+            ctx.lineTo(player.x + player.width/2, player.y + player.height + 10 + Math.random() * 8);
+            ctx.lineTo(player.x + player.width/2 + 5, player.y + player.height - 5);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw bullets
+            ctx.fillStyle = '#ffd700';
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#ffd700';
+            bullets.forEach(bullet => {
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            });
+            ctx.shadowBlur = 0;
+            
+            // Draw enemies
+            enemies.forEach(enemy => {
+                ctx.fillStyle = enemy.color;
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+                
+                // Enemy details
+                ctx.fillStyle = 'rgba(0,0,0,0.3)';
+                ctx.fillRect(enemy.x + 5, enemy.y + 5, enemy.width - 10, enemy.height - 10);
+            });
+            
+            // Draw particles
+            particles.forEach(p => {
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life / 25;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            });
+        }
+        
+        function updateUI() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('level').textContent = level;
+            document.getElementById('lives').textContent = '❤️'.repeat(Math.max(0, lives));
+        }
+        
+        function startGame() {
+            document.getElementById('start-screen').style.display = 'none';
+            gameRunning = true;
+            score = 0;
+            level = 1;
+            lives = 3;
+            bullets = [];
+            enemies = [];
+            particles = [];
+            player.x = canvas.width / 2 - 25;
+            updateUI();
+        }
+        
+        function gameOver() {
+            gameRunning = false;
+            document.getElementById('final-score').textContent = 'Score: ' + score;
+            document.getElementById('game-over-screen').style.display = 'flex';
+        }
+        
+        function restartGame() {
+            document.getElementById('game-over-screen').style.display = 'none';
+            startGame();
+        }
+        
+        // Game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // Start loop
+        gameLoop();
+    </script>
 </body>
 </html>
