@@ -33,9 +33,11 @@
             justify-content: center;
             margin-top: 8px;
             font-size: 0.9em;
+            flex-wrap: wrap;
         }
         .stat { color: #fff; }
         .stat span { color: #ffd700; font-weight: bold; }
+        #difficulty-display { color: #4ecca3; font-weight: bold; }
         #game-container {
             position: relative;
             margin: 10px auto;
@@ -96,16 +98,87 @@
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s;
+            margin: 5px;
         }
         .btn:hover {
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(78, 204, 163, 0.5);
+        }
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9em;
         }
         #final-score {
             color: #ffd700;
             font-size: 1.5em;
             margin-bottom: 15px;
         }
+        .difficulty-selector {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .difficulty-selector h3 {
+            color: #4ecca3;
+            margin-bottom: 10px;
+        }
+        .difficulty-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .difficulty-btn {
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s;
+        }
+        .difficulty-btn.easy { background: #28a745; }
+        .difficulty-btn.medium { background: #ffc107; color: #000; }
+        .difficulty-btn.hard { background: #dc3545; }
+        .difficulty-btn.selected {
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+            transform: scale(1.1);
+        }
+        .speed-info {
+            color: #aaa;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+        .copyright {
+            color: #666;
+            font-size: 0.75em;
+            margin-top: 15px;
+        }
+        .copyright a {
+            color: #4ecca3;
+            text-decoration: none;
+        }
+        #mobile-controls {
+            display: none;
+            margin-top: 10px;
+            gap: 10px;
+            justify-content: center;
+        }
+        .mobile-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5em;
+            background: rgba(78, 204, 163, 0.5);
+            color: white;
+            cursor: pointer;
+        }
+        .mobile-btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
@@ -115,6 +188,7 @@
             <div class="stat">Score: <span id="score">0</span></div>
             <div class="stat">Level: <span id="level">1</span></div>
             <div class="stat">Lives: <span id="lives">❤️❤️❤️</span></div>
+            <div class="stat" id="difficulty-display">Difficulty: Medium</div>
         </div>
     </div>
     
@@ -129,18 +203,38 @@
                 SPACE to shoot<br><br>
                 Collect power-ups and survive!
             </div>
+            
+            <div class="difficulty-selector">
+                <h3>🎮 Select Difficulty</h3>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn easy" id="easy-btn" onclick="setDifficulty('easy')">🟢 Easy</button>
+                    <button class="difficulty-btn medium selected" id="medium-btn" onclick="setDifficulty('medium')">🟡 Medium</button>
+                    <button class="difficulty-btn hard" id="hard-btn" onclick="setDifficulty('hard')">🔴 Hard</button>
+                </div>
+                <div class="speed-info" id="speed-info">Enemy Speed: Normal</div>
+            </div>
+            
             <button class="btn" onclick="startGame()">START GAME</button>
+            <div class="copyright">© 2026 Kevin Fan with OpenClaw Agent. All Rights Reserved.</div>
         </div>
         
         <div id="game-over-screen">
             <div class="screen-title">GAME OVER</div>
             <div id="final-score">Score: 0</div>
+            <div style="color: #4ecca3; margin-bottom: 10px;">Difficulty: <span id="final-difficulty">Medium</span></div>
             <button class="btn" onclick="restartGame()">PLAY AGAIN</button>
+            <div class="copyright">© 2026 Kevin Fan with OpenClaw Agent. All Rights Reserved.</div>
         </div>
     </div>
     
     <div id="controls">
         <p><span class="key">←</span> <span class="key">→</span> or <span class="key">A</span> <span class="key">D</span> to move • <span class="key">SPACE</span> to shoot</p>
+    </div>
+    
+    <div id="mobile-controls">
+        <button class="mobile-btn" id="left-btn">⬅️</button>
+        <button class="mobile-btn" id="shoot-btn">🔥</button>
+        <button class="mobile-btn" id="right-btn">➡️</button>
     </div>
 
     <script>
@@ -153,13 +247,43 @@
         let level = 1;
         let lives = 3;
         
+        // Difficulty settings
+        const difficulties = {
+            easy: {
+                name: 'Easy',
+                enemySpeedMultiplier: 0.5,
+                spawnRate: 0.015,
+                scoreMultiplier: 1,
+                desc: 'Very Slow'
+            },
+            medium: {
+                name: 'Medium',
+                enemySpeedMultiplier: 1.0,
+                spawnRate: 0.025,
+                scoreMultiplier: 1.5,
+                desc: 'Normal'
+            },
+            hard: {
+                name: 'Hard',
+                enemySpeedMultiplier: 1.8,
+                spawnRate: 0.04,
+                scoreMultiplier: 2,
+                desc: 'Very Fast'
+            }
+        };
+        
+        let currentDifficulty = 'medium';
+        let difficultySettings = difficulties[currentDifficulty];
+        
         // Player
         const player = {
             x: canvas.width / 2 - 25,
             y: canvas.height - 70,
             width: 50,
             height: 40,
-            speed: 6
+            speed: 6,
+            lastShot: 0,
+            shotCooldown: 200
         };
         
         // Game objects
@@ -182,6 +306,17 @@
             });
         }
         
+        function setDifficulty(diff) {
+            currentDifficulty = diff;
+            difficultySettings = difficulties[diff];
+            
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.getElementById(diff + '-btn').classList.add('selected');
+            document.getElementById('speed-info').textContent = 'Enemy Speed: ' + difficultySettings.desc;
+        }
+        
         // Event listeners
         document.addEventListener('keydown', (e) => {
             keys[e.key] = true;
@@ -192,7 +327,41 @@
             keys[e.key] = false;
         });
         
+        // Mobile controls
+        document.getElementById('left-btn').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            keys['ArrowLeft'] = true;
+        });
+        document.getElementById('left-btn').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            keys['ArrowLeft'] = false;
+        });
+        
+        document.getElementById('right-btn').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            keys['ArrowRight'] = true;
+        });
+        document.getElementById('right-btn').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            keys['ArrowRight'] = false;
+        });
+        
+        document.getElementById('shoot-btn').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (gameRunning) shoot();
+        });
+        
+        // Check if mobile
+        if ('ontouchstart' in window) {
+            document.getElementById('mobile-controls').style.display = 'flex';
+            document.getElementById('controls').style.display = 'none';
+        }
+        
         function shoot() {
+            const now = Date.now();
+            if (now - player.lastShot < player.shotCooldown) return;
+            
+            player.lastShot = now;
             bullets.push({
                 x: player.x + player.width / 2 - 3,
                 y: player.y,
@@ -217,19 +386,19 @@
             
             switch(type) {
                 case 'basic':
-                    enemy.speed = 2 + level * 0.2;
+                    enemy.speed = (2 + level * 0.2) * difficultySettings.enemySpeedMultiplier;
                     enemy.color = '#e74c3c';
                     enemy.score = 10;
                     break;
                 case 'fast':
-                    enemy.speed = 4 + level * 0.3;
+                    enemy.speed = (4 + level * 0.3) * difficultySettings.enemySpeedMultiplier;
                     enemy.width = 30;
                     enemy.height = 30;
                     enemy.color = '#9b59b6';
                     enemy.score = 20;
                     break;
                 case 'tank':
-                    enemy.speed = 1 + level * 0.1;
+                    enemy.speed = (1 + level * 0.1) * difficultySettings.enemySpeedMultiplier;
                     enemy.width = 50;
                     enemy.height = 50;
                     enemy.hp = 3;
@@ -268,6 +437,11 @@
             
             // Keep player in bounds
             player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+            
+            // Auto shoot when space held
+            if (keys[' ']) {
+                shoot();
+            }
             
             // Update bullets
             bullets = bullets.filter(bullet => {
@@ -309,7 +483,7 @@
                         createParticles(enemies[j].x + enemies[j].width/2, enemies[j].y + enemies[j].height/2, enemies[j].color);
                         
                         if (enemies[j].hp <= 0) {
-                            score += enemies[j].score;
+                            score += Math.floor(enemies[j].score * difficultySettings.scoreMultiplier);
                             enemies.splice(j, 1);
                         }
                         
@@ -337,7 +511,7 @@
             });
             
             // Spawn enemies
-            if (Math.random() < 0.02 + level * 0.003) {
+            if (Math.random() < difficultySettings.spawnRate + level * 0.002) {
                 createEnemy();
             }
             
@@ -424,6 +598,7 @@
             document.getElementById('score').textContent = score;
             document.getElementById('level').textContent = level;
             document.getElementById('lives').textContent = '❤️'.repeat(Math.max(0, lives));
+            document.getElementById('difficulty-display').textContent = 'Difficulty: ' + difficultySettings.name;
         }
         
         function startGame() {
@@ -436,12 +611,14 @@
             enemies = [];
             particles = [];
             player.x = canvas.width / 2 - 25;
+            player.lastShot = 0;
             updateUI();
         }
         
         function gameOver() {
             gameRunning = false;
             document.getElementById('final-score').textContent = 'Score: ' + score;
+            document.getElementById('final-difficulty').textContent = difficultySettings.name;
             document.getElementById('game-over-screen').style.display = 'flex';
         }
         
