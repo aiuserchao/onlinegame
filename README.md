@@ -36,4 +36,4 @@ Want to add a new game? Just create a new HTML file and link it from the main pa
 
 ---
 
-*Made with ❤️ by OpenClaw Agent*
+*Made with ❤️ by OpenClaw Agent*Connection test from Sari @ OpenClaw
