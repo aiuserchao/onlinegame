@@ -85,6 +85,11 @@
             padding: 5px 10px;
             background: rgba(255,255,255,0.2);
             border-radius: 5px;
+            animation: arrowPulse 0.3s ease-out;
+        }
+        @keyframes arrowPulse {
+            0% { transform: scale(1.5); background: rgba(255,255,255,0.8); }
+            100% { transform: scale(1); background: rgba(255,255,255,0.2); }
         }
         .message {
             margin-top: 15px;
@@ -106,9 +111,28 @@
             font-size: 1.2em;
             margin-bottom: 10px;
         }
+        .flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .flash-overlay.flash {
+            animation: flashEffect 0.15s ease-out;
+        }
+        @keyframes flashEffect {
+            0% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
+    <div class="flash-overlay" id="flashOverlay"></div>
     <h1>🌟 Fuzz Maze 🌟</h1>
     <div class="level-indicator">Level: <strong id="levelNum">1</strong></div>
     <div class="score-board">
@@ -127,7 +151,7 @@
         <div class="path-display" id="pathDisplay"></div>
         <div style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
             <button class="btn-clear" onclick="clearPath()">🗑️ Clear</button>
-            <button class="btn-execute" onclick="executePath()">▶️ GO!</button>
+            <button class="btn-execute" onclick="resetAndStart()">▶️ GO!</button>
             <button class="btn-next" onclick="nextLevel()">➡️ Next Level</button>
         </div>
         <div class="message info" id="message">Use ↑ ↓ ← → to plan Fuzz's path to the goal!</div>
@@ -142,6 +166,7 @@
         const levelStarsEl = document.getElementById('levelStars');
         const bestScoreEl = document.getElementById('bestScore');
         const levelNumEl = document.getElementById('levelNum');
+        const flashOverlay = document.getElementById('flashOverlay');
 
         const CELL_SIZE = 50;
         const COLS = 8;
@@ -152,12 +177,105 @@
         let levelStars = 0;
         let bestScore = parseInt(localStorage.getItem('fuzzMazeBest')) || 0;
         let path = [];
+        let pathIndex = 0;
         let fuzzPos = { x: 0, y: 0 };
         let goalPos = { x: 0, y: 0 };
         let maze = [];
         let wrongMoves = [];
         let starsCollected = [];
         let isAnimating = false;
+        let animationId = null;
+
+        // Audio context for sounds
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playMoveSound() {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            osc.start(audioCtx.currentTime);
+            osc.stop(audioCtx.currentTime + 0.1);
+            
+            // Flash effect
+            flashOverlay.classList.remove('flash');
+            void flashOverlay.offsetWidth;
+            flashOverlay.classList.add('flash');
+        }
+
+        function playWrongSound() {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.start(audioCtx.currentTime);
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function playStarSound() {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(1000, audioCtx.currentTime + 0.1);
+            osc.frequency.setValueAtTime(1200, audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.start(audioCtx.currentTime);
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function playVictorySound() {
+            initAudio();
+            // "Yeah, you did it!" - musical celebration
+            const notes = [523, 659, 784, 1047, 784, 1047, 1319];
+            const durations = [0.15, 0.15, 0.15, 0.2, 0.1, 0.1, 0.4];
+            let time = audioCtx.currentTime;
+            
+            notes.forEach((freq, i) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.setValueAtTime(freq, time);
+                osc.type = 'square';
+                gain.gain.setValueAtTime(0.2, time);
+                gain.gain.exponentialRampToValueAtTime(0.01, time + durations[i]);
+                osc.start(time);
+                osc.stop(time + durations[i]);
+                time += durations[i];
+            });
+
+            // Add "Yeah!" voice-like sound
+            const noise = audioCtx.createOscillator();
+            const noiseGain = audioCtx.createGain();
+            noise.connect(noiseGain);
+            noiseGain.connect(audioCtx.destination);
+            noise.frequency.setValueAtTime(150, audioCtx.currentTime);
+            noise.frequency.linearRampToValueAtTime(120, audioCtx.currentTime + 0.3);
+            noise.type = 'sawtooth';
+            noiseGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            noiseGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            noise.start(audioCtx.currentTime);
+            noise.stop(audioCtx.currentTime + 0.4);
+        }
 
         const levels = [
             // Level 1 - Simple straight path
@@ -255,6 +373,7 @@
             starsCollected = [];
             wrongMoves = [];
             path = [];
+            pathIndex = 0;
             levelStars = 0;
             pathDisplay.innerHTML = '';
             messageEl.className = 'message info';
@@ -356,20 +475,90 @@
 
         function addDirection(dir) {
             if (isAnimating) return;
+            playMoveSound();
             path.push(dir);
             updatePathDisplay();
+            
+            // Animate one step immediately
+            animateOneStep();
+        }
+
+        function animateOneStep() {
+            if (pathIndex >= path.length) return;
+            
+            const level = levels[(currentLevel - 1) % levels.length];
+            const dir = path[pathIndex];
+            const newPos = getNewPos(fuzzPos, dir);
+            
+            if (!isValidMove(newPos)) {
+                if (!wrongMoves.some(w => w.x === newPos.x && w.y === newPos.y)) {
+                    wrongMoves.push({...newPos});
+                    playWrongSound();
+                }
+                pathIndex++;
+                animateOneStep();
+                return;
+            }
+            
+            fuzzPos = {...newPos};
+            
+            // Check for star collection
+            const starIndex = level.stars.findIndex(s => s.x === fuzzPos.x && s.y === fuzzPos.y);
+            if (starIndex !== -1 && !starsCollected.some(sc => sc.x === level.stars[starIndex].x && sc.y === level.stars[starIndex].y)) {
+                starsCollected.push(level.stars[starIndex]);
+                levelStars++;
+                totalStars++;
+                totalStarsEl.textContent = totalStars;
+                levelStarsEl.textContent = levelStars;
+                playStarSound();
+            }
+            
+            draw();
+            pathIndex++;
+            
+            // Continue animation if more steps
+            if (pathIndex < path.length) {
+                setTimeout(animateOneStep, 200);
+            }
         }
 
         function updatePathDisplay() {
             const arrows = {up: '↑', down: '↓', left: '←', right: '→'};
-            pathDisplay.innerHTML = path.map(d => `<span class="path-arrow">${arrows[d]}</span>`).join('');
+            pathDisplay.innerHTML = path.map((d, i) => {
+                const isPast = i < pathIndex;
+                const opacity = isPast ? '0.3' : '1';
+                return `<span class="path-arrow" style="opacity:${opacity}">${arrows[d]}</span>`;
+            }).join('');
         }
 
         function clearPath() {
-            if (isAnimating) return;
+            if (isAnimating) {
+                cancelAnimationFrame(animationId);
+                isAnimating = false;
+            }
             path = [];
+            pathIndex = 0;
             updatePathDisplay();
             loadLevel(currentLevel);
+        }
+
+        function resetAndStart() {
+            if (path.length === 0) return;
+            pathIndex = 0;
+            const level = levels[(currentLevel - 1) % levels.length];
+            fuzzPos = {...level.start};
+            wrongMoves = [];
+            starsCollected = [];
+            levelStars = 0;
+            totalStars = parseInt(totalStarsEl.textContent) - parseInt(levelStarsEl.textContent) || 0;
+            starsCollected = [];
+            levelStars = 0;
+            totalStarsEl.textContent = totalStars;
+            levelStarsEl.textContent = levelStars;
+            starsCollected = [];
+            loadLevel(currentLevel);
+            pathIndex = 0;
+            animateOneStep();
         }
 
         function getNewPos(pos, dir) {
@@ -385,55 +574,16 @@
             return pos.x >= 0 && pos.x < COLS && pos.y >= 0 && pos.y < ROWS && maze[pos.y][pos.x] === 1;
         }
 
-        async function executePath() {
-            if (isAnimating || path.length === 0) return;
-            isAnimating = true;
-            wrongMoves = [];
-            starsCollected = [];
-            
+        function checkGameEnd() {
             const level = levels[(currentLevel - 1) % levels.length];
-            let tempPos = {...level.start};
-            fuzzPos = {...tempPos};
-            let hasWrongMove = false;
-            let firstWrongPos = null;
-
-            for (let i = 0; i < path.length; i++) {
-                const newPos = getNewPos(tempPos, path[i]);
-                
-                if (!isValidMove(newPos)) {
-                    if (!hasWrongMove) {
-                        hasWrongMove = true;
-                        firstWrongPos = {...newPos};
-                        wrongMoves.push(firstWrongPos);
-                    }
-                    draw();
-                    await sleep(200);
-                    continue;
-                }
-
-                tempPos = newPos;
-                fuzzPos = {...tempPos};
-                
-                // Check for star collection
-                const starIndex = level.stars.findIndex(s => s.x === tempPos.x && s.y === tempPos.y);
-                if (starIndex !== -1 && !starsCollected.some(s => s.x === level.stars[starIndex].x && s.y === level.stars[starIndex].y)) {
-                    starsCollected.push(level.stars[starIndex]);
-                    levelStars++;
-                    totalStars++;
-                    totalStarsEl.textContent = totalStars;
-                    levelStarsEl.textContent = levelStars;
-                }
-
-                draw();
-                await sleep(300);
-            }
-
+            
             // Check if reached goal
-            if (tempPos.x === goalPos.x && tempPos.y === goalPos.y) {
-                // Check if path is optimal
+            if (fuzzPos.x === goalPos.x && fuzzPos.y === goalPos.y) {
+                const hasWrongMove = wrongMoves.length > 0;
                 if (!hasWrongMove) {
+                    playVictorySound();
                     messageEl.className = 'message success';
-                    messageEl.innerHTML = `<span class="stars">${'⭐'.repeat(levelStars)}</span><br>Perfect Path! +${levelStars} Stars!`;
+                    messageEl.innerHTML = `<span class="stars">${'⭐'.repeat(levelStars)}</span><br>🎉 YEAH! You did it! +${levelStars} Stars!`;
                     if (totalStars > bestScore) {
                         bestScore = totalStars;
                         bestScoreEl.textContent = bestScore;
@@ -443,25 +593,74 @@
                     messageEl.className = 'message info';
                     messageEl.innerHTML = `<span class="stars">${'⭐'.repeat(levelStars)}</span><br>You made it! But there were wrong moves...`;
                 }
-            } else {
-                messageEl.className = 'message error';
-                if (firstWrongPos) {
-                    messageEl.innerHTML = `❌ Wrong move! Fuzz hit a wall at (${firstWrongPos.x}, ${firstWrongPos.y})<br>Try again!`;
-                } else {
-                    messageEl.innerHTML = `❌ Fuzz didn't reach the goal!<br>Try again!`;
-                }
+                return true;
             }
+            
+            // Check if all moves done but didn't reach goal
+            if (pathIndex >= path.length) {
+                messageEl.className = 'message error';
+                messageEl.innerHTML = `❌ Fuzz didn't reach the goal!<br>Try again!`;
+                return true;
+            }
+            
+            return false;
+        }
 
-            isAnimating = false;
+        // Override animateOneStep to check for game end
+        const originalAnimateOneStep = animateOneStep;
+        function animateOneStep() {
+            if (pathIndex >= path.length) {
+                checkGameEnd();
+                return;
+            }
+            
+            const level = levels[(currentLevel - 1) % levels.length];
+            const dir = path[pathIndex];
+            const newPos = getNewPos(fuzzPos, dir);
+            
+            if (!isValidMove(newPos)) {
+                if (!wrongMoves.some(w => w.x === newPos.x && w.y === newPos.y)) {
+                    wrongMoves.push({...newPos});
+                    playWrongSound();
+                }
+                pathIndex++;
+                draw();
+                if (pathIndex >= path.length) {
+                    setTimeout(checkGameEnd, 300);
+                } else {
+                    setTimeout(animateOneStep, 200);
+                }
+                return;
+            }
+            
+            fuzzPos = {...newPos};
+            
+            // Check for star collection
+            const starIndex = level.stars.findIndex(s => s.x === fuzzPos.x && s.y === fuzzPos.y);
+            if (starIndex !== -1 && !starsCollected.some(sc => sc.x === level.stars[starIndex].x && sc.y === level.stars[starIndex].y)) {
+                starsCollected.push(level.stars[starIndex]);
+                levelStars++;
+                totalStars++;
+                totalStarsEl.textContent = totalStars;
+                levelStarsEl.textContent = levelStars;
+                playStarSound();
+            }
+            
+            draw();
+            pathIndex++;
+            updatePathDisplay();
+            
+            // Continue animation if more steps
+            if (pathIndex < path.length) {
+                setTimeout(animateOneStep, 200);
+            } else {
+                setTimeout(checkGameEnd, 300);
+            }
         }
 
         function nextLevel() {
             currentLevel++;
             loadLevel(currentLevel);
-        }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
         // Keyboard controls
@@ -471,7 +670,7 @@
             if (e.key === 'ArrowDown') { e.preventDefault(); addDirection('down'); }
             if (e.key === 'ArrowLeft') { e.preventDefault(); addDirection('left'); }
             if (e.key === 'ArrowRight') { e.preventDefault(); addDirection('right'); }
-            if (e.key === 'Enter') executePath();
+            if (e.key === 'Enter') resetAndStart();
             if (e.key === 'Escape') clearPath();
         });
 
