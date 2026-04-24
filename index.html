@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuzz Maze - Kodable Style</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+        h1 {
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .score-board {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        .score-board span { color: #aaa; }
+        .score-board strong { color: #ffd700; }
+        .game-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        #gameCanvas {
+            border-radius: 10px;
+            display: block;
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .controls button {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .controls button:hover { transform: scale(1.1); }
+        .controls button:active { transform: scale(0.95); }
+        .btn-up { background: #4CAF50; color: white; }
+        .btn-down { background: #f44336; color: white; }
+        .btn-left { background: #2196F3; color: white; }
+        .btn-right { background: #FF9800; color: white; }
+        .btn-clear { background: #9C27B0; color: white; }
+        .btn-execute { background: #ffd700; color: #333; font-weight: bold; }
+        .btn-next { background: #00BCD4; color: white; }
+        .path-display {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            min-height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .path-display:empty::before {
+            content: '↑ ↓ ← → Type your path above!';
+            color: #666;
+        }
+        .path-arrow {
+            font-size: 1.5em;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message.success { background: rgba(76, 175, 80, 0.3); color: #4CAF50; }
+        .message.error { background: rgba(244, 67, 54, 0.3); color: #f44336; }
+        .message.info { background: rgba(33, 150, 243, 0.3); color: #2196F3; }
+        .stars { font-size: 2em; }
+        .level-indicator {
+            color: #ffd700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 Fuzz Maze 🌟</h1>
+    <div class="level-indicator">Level: <strong id="levelNum">1</strong></div>
+    <div class="score-board">
+        <span>Stars: <strong id="totalStars">0</strong></span>
+        <span>Level Stars: <strong id="levelStars">0</strong></span>
+        <span>Best: <strong id="bestScore">0</strong></span>
+    </div>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="controls">
+            <button class="btn-up" onclick="addDirection('up')">↑ UP</button>
+            <button class="btn-left" onclick="addDirection('left')">← LEFT</button>
+            <button class="btn-right" onclick="addDirection('right')">→ RIGHT</button>
+            <button class="btn-down" onclick="addDirection('down')">↓ DOWN</button>
+        </div>
+        <div class="path-display" id="pathDisplay"></div>
+        <div style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
+            <button class="btn-clear" onclick="clearPath()">🗑️ Clear</button>
+            <button class="btn-execute" onclick="executePath()">▶️ GO!</button>
+            <button class="btn-next" onclick="nextLevel()">➡️ Next Level</button>
+        </div>
+        <div class="message info" id="message">Use ↑ ↓ ← → to plan Fuzz's path to the goal!</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const pathDisplay = document.getElementById('pathDisplay');
+        const messageEl = document.getElementById('message');
+        const totalStarsEl = document.getElementById('totalStars');
+        const levelStarsEl = document.getElementById('levelStars');
+        const bestScoreEl = document.getElementById('bestScore');
+        const levelNumEl = document.getElementById('levelNum');
+
+        const CELL_SIZE = 50;
+        const COLS = 8;
+        const ROWS = 8;
+
+        let currentLevel = 1;
+        let totalStars = 0;
+        let levelStars = 0;
+        let bestScore = parseInt(localStorage.getItem('fuzzMazeBest')) || 0;
+        let path = [];
+        let fuzzPos = { x: 0, y: 0 };
+        let goalPos = { x: 0, y: 0 };
+        let maze = [];
+        let wrongMoves = [];
+        let starsCollected = [];
+        let isAnimating = false;
+
+        const levels = [
+            // Level 1 - Simple straight path
+            {
+                maze: [
+                    [0,0,0,0,0,0,0,0],
+                    [0,1,1,1,1,0,0,0],
+                    [0,0,0,0,1,0,0,0],
+                    [0,0,0,0,1,0,0,0],
+                    [0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0]
+                ],
+                start: {x: 1, y: 1},
+                goal: {x: 4, y: 2},
+                stars: [{x: 2, y: 1}, {x: 3, y: 1}, {x: 4, y: 1}],
+                path: ['right','right','right','right','down','down']
+            },
+            // Level 2 - L shape
+            {
+                maze: [
+                    [0,0,0,0,0,0,0,0],
+                    [0,1,1,0,0,0,0,0],
+                    [0,0,1,0,0,0,0,0],
+                    [0,0,1,1,1,0,0,0],
+                    [0,0,0,0,1,0,0,0],
+                    [0,0,0,0,1,0,0,0],
+                    [0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0]
+                ],
+                start: {x: 1, y: 1},
+                goal: {x: 4, y: 4},
+                stars: [{x: 2, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 3}],
+                path: ['right','right','down','down','down','down','right','right','right']
+            },
+            // Level 3 - Zigzag
+            {
+                maze: [
+                    [0,0,0,0,0,0,0,0],
+                    [0,1,1,1,0,0,0,0],
+                    [0,0,0,1,0,0,0,0],
+                    [0,0,0,1,1,1,0,0],
+                    [0,0,0,0,0,1,0,0],
+                    [0,0,0,0,0,1,1,0],
+                    [0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0]
+                ],
+                start: {x: 1, y: 1},
+                goal: {x: 6, y: 5},
+                stars: [{x: 2, y: 1}, {x: 3, y: 1}, {x: 3, y: 2}, {x: 4, y: 3}, {x: 5, y: 3}, {x: 5, y: 4}, {x: 6, y: 5}],
+                path: ['right','right','right','down','down','right','right','down','down','down','down']
+            },
+            // Level 4 - Maze with dead ends
+            {
+                maze: [
+                    [0,0,0,0,0,0,0,0],
+                    [0,1,1,1,1,1,0,0],
+                    [0,0,0,0,0,1,0,0],
+                    [0,0,0,0,0,1,0,0],
+                    [0,0,1,1,1,1,0,0],
+                    [0,0,1,0,0,0,0,0],
+                    [0,0,1,1,1,1,1,0],
+                    [0,0,0,0,0,0,0,0]
+                ],
+                start: {x: 1, y: 1},
+                goal: {x: 6, y: 6},
+                stars: [{x: 2, y: 1}, {x: 3, y: 1}, {x: 4, y: 1}, {x: 5, y: 1}, {x: 5, y: 2}, {x: 5, y: 3}, {x: 3, y: 4}, {x: 4, y: 4}, {x: 5, y: 4}, {x: 5, y: 5}, {x: 6, y: 6}],
+                path: ['right','right','right','right','right','down','down','down','down','left','left','left','down','right','right','right','down']
+            },
+            // Level 5 - Complex maze
+            {
+                maze: [
+                    [0,0,0,0,0,0,0,0],
+                    [0,1,1,1,1,0,0,0],
+                    [0,1,0,0,1,0,0,0],
+                    [0,1,0,0,1,1,1,0],
+                    [0,1,1,1,0,0,1,0],
+                    [0,0,0,1,0,0,1,0],
+                    [0,0,0,1,1,1,1,0],
+                    [0,0,0,0,0,0,0,0]
+                ],
+                start: {x: 1, y: 1},
+                goal: {x: 5, y: 6},
+                stars: [{x: 2, y: 1}, {x: 3, y: 1}, {x: 4, y: 1}, {x: 4, y: 2}, {x: 4, y: 3}, {x: 5, y: 3}, {x: 6, y: 3}, {x: 3, y: 4}, {x: 2, y: 4}, {x: 3, y: 5}, {x: 3, y: 6}, {x: 4, y: 6}, {x: 5, y: 6}],
+                path: ['right','right','right','down','down','right','down','down','down','down','left','down']
+            }
+        ];
+
+        function loadLevel(levelNum) {
+            const level = levels[(levelNum - 1) % levels.length];
+            maze = level.maze.map(row => [...row]);
+            fuzzPos = {...level.start};
+            goalPos = {...level.goal};
+            starsCollected = [];
+            wrongMoves = [];
+            path = [];
+            levelStars = 0;
+            pathDisplay.innerHTML = '';
+            messageEl.className = 'message info';
+            messageEl.textContent = 'Use ↑ ↓ ← → to plan Fuzz\'s path to the goal!';
+            levelNumEl.textContent = levelNum;
+            levelStarsEl.textContent = levelStars;
+            draw();
+        }
+
+        function draw() {
+            ctx.fillStyle = '#1a1a2e';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw maze
+            for (let y = 0; y < ROWS; y++) {
+                for (let x = 0; x < COLS; x++) {
+                    const px = x * CELL_SIZE;
+                    const py = y * CELL_SIZE;
+                    
+                    if (maze[y][x] === 1) {
+                        ctx.fillStyle = '#2a2a4e';
+                        ctx.fillRect(px, py, CELL_SIZE, CELL_SIZE);
+                        ctx.strokeStyle = '#3a3a5e';
+                        ctx.strokeRect(px, py, CELL_SIZE, CELL_SIZE);
+                    }
+                }
+            }
+
+            // Draw goal
+            const goalX = goalPos.x * CELL_SIZE + CELL_SIZE/2;
+            const goalY = goalPos.y * CELL_SIZE + CELL_SIZE/2;
+            ctx.fillStyle = '#ffd700';
+            ctx.beginPath();
+            ctx.arc(goalX, goalY, 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('★', goalX, goalY);
+
+            // Draw stars
+            starsCollected.forEach(star => {
+                const sx = star.x * CELL_SIZE + CELL_SIZE/2;
+                const sy = star.y * CELL_SIZE + CELL_SIZE/2;
+                ctx.fillStyle = '#ffd700';
+                ctx.font = '20px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('⭐', sx, sy);
+            });
+
+            // Draw wrong moves (X marks)
+            wrongMoves.forEach(move => {
+                const mx = move.x * CELL_SIZE + CELL_SIZE/2;
+                const my = move.y * CELL_SIZE + CELL_SIZE/2;
+                ctx.strokeStyle = '#f44336';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(mx - 12, my - 12);
+                ctx.lineTo(mx + 12, my + 12);
+                ctx.moveTo(mx + 12, my - 12);
+                ctx.lineTo(mx - 12, my + 12);
+                ctx.stroke();
+            });
+
+            // Draw Fuzz ball
+            const fuzzX = fuzzPos.x * CELL_SIZE + CELL_SIZE/2;
+            const fuzzY = fuzzPos.y * CELL_SIZE + CELL_SIZE/2;
+            
+            // Fuzz body
+            const gradient = ctx.createRadialGradient(fuzzX - 5, fuzzY - 5, 0, fuzzX, fuzzY, 20);
+            gradient.addColorStop(0, '#90EE90');
+            gradient.addColorStop(1, '#32CD32');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(fuzzX, fuzzY, 18, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Fuzz eyes
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(fuzzX - 6, fuzzY - 3, 5, 0, Math.PI * 2);
+            ctx.arc(fuzzX + 6, fuzzY - 3, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#000';
+            ctx.beginPath();
+            ctx.arc(fuzzX - 6, fuzzY - 3, 2, 0, Math.PI * 2);
+            ctx.arc(fuzzX + 6, fuzzY - 3, 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Fuzz smile
+            ctx.strokeStyle = '#006400';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(fuzzX, fuzzY + 2, 8, 0.1 * Math.PI, 0.9 * Math.PI);
+            ctx.stroke();
+        }
+
+        function addDirection(dir) {
+            if (isAnimating) return;
+            path.push(dir);
+            updatePathDisplay();
+        }
+
+        function updatePathDisplay() {
+            const arrows = {up: '↑', down: '↓', left: '←', right: '→'};
+            pathDisplay.innerHTML = path.map(d => `<span class="path-arrow">${arrows[d]}</span>`).join('');
+        }
+
+        function clearPath() {
+            if (isAnimating) return;
+            path = [];
+            updatePathDisplay();
+            loadLevel(currentLevel);
+        }
+
+        function getNewPos(pos, dir) {
+            const newPos = {...pos};
+            if (dir === 'up') newPos.y--;
+            if (dir === 'down') newPos.y++;
+            if (dir === 'left') newPos.x--;
+            if (dir === 'right') newPos.x++;
+            return newPos;
+        }
+
+        function isValidMove(pos) {
+            return pos.x >= 0 && pos.x < COLS && pos.y >= 0 && pos.y < ROWS && maze[pos.y][pos.x] === 1;
+        }
+
+        async function executePath() {
+            if (isAnimating || path.length === 0) return;
+            isAnimating = true;
+            wrongMoves = [];
+            starsCollected = [];
+            
+            const level = levels[(currentLevel - 1) % levels.length];
+            let tempPos = {...level.start};
+            fuzzPos = {...tempPos};
+            let hasWrongMove = false;
+            let firstWrongPos = null;
+
+            for (let i = 0; i < path.length; i++) {
+                const newPos = getNewPos(tempPos, path[i]);
+                
+                if (!isValidMove(newPos)) {
+                    if (!hasWrongMove) {
+                        hasWrongMove = true;
+                        firstWrongPos = {...newPos};
+                        wrongMoves.push(firstWrongPos);
+                    }
+                    draw();
+                    await sleep(200);
+                    continue;
+                }
+
+                tempPos = newPos;
+                fuzzPos = {...tempPos};
+                
+                // Check for star collection
+                const starIndex = level.stars.findIndex(s => s.x === tempPos.x && s.y === tempPos.y);
+                if (starIndex !== -1 && !starsCollected.some(s => s.x === level.stars[starIndex].x && s.y === level.stars[starIndex].y)) {
+                    starsCollected.push(level.stars[starIndex]);
+                    levelStars++;
+                    totalStars++;
+                    totalStarsEl.textContent = totalStars;
+                    levelStarsEl.textContent = levelStars;
+                }
+
+                draw();
+                await sleep(300);
+            }
+
+            // Check if reached goal
+            if (tempPos.x === goalPos.x && tempPos.y === goalPos.y) {
+                // Check if path is optimal
+                if (!hasWrongMove) {
+                    messageEl.className = 'message success';
+                    messageEl.innerHTML = `<span class="stars">${'⭐'.repeat(levelStars)}</span><br>Perfect Path! +${levelStars} Stars!`;
+                    if (totalStars > bestScore) {
+                        bestScore = totalStars;
+                        bestScoreEl.textContent = bestScore;
+                        localStorage.setItem('fuzzMazeBest', bestScore);
+                    }
+                } else {
+                    messageEl.className = 'message info';
+                    messageEl.innerHTML = `<span class="stars">${'⭐'.repeat(levelStars)}</span><br>You made it! But there were wrong moves...`;
+                }
+            } else {
+                messageEl.className = 'message error';
+                if (firstWrongPos) {
+                    messageEl.innerHTML = `❌ Wrong move! Fuzz hit a wall at (${firstWrongPos.x}, ${firstWrongPos.y})<br>Try again!`;
+                } else {
+                    messageEl.innerHTML = `❌ Fuzz didn't reach the goal!<br>Try again!`;
+                }
+            }
+
+            isAnimating = false;
+        }
+
+        function nextLevel() {
+            currentLevel++;
+            loadLevel(currentLevel);
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (isAnimating) return;
+            if (e.key === 'ArrowUp') { e.preventDefault(); addDirection('up'); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); addDirection('down'); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); addDirection('left'); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); addDirection('right'); }
+            if (e.key === 'Enter') executePath();
+            if (e.key === 'Escape') clearPath();
+        });
+
+        // Initialize
+        loadLevel(1);
+    </script>
+</body>
+</html>
