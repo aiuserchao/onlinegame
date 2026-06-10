@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 - Online Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); min-height: 100vh; display: flex; flex-direction: column; align-items: center; font-family: 'Segoe UI', sans-serif; color: white; }
+        #header { width: 100%; padding: 20px; text-align: center; background: rgba(0,0,0,0.3); }
+        h1 { color: #fff; font-size: 2.5em; text-shadow: 0 0 20px rgba(255,255,255,0.5); letter-spacing: 10px; }
+        #game-wrapper { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        #score-board { display: flex; gap: 30px; font-size: 1.2em; }
+        .score-box { background: rgba(255,255,255,0.1); padding: 10px 25px; border-radius: 10px; text-align: center; }
+        .score-label { color: #aaa; font-size: 0.8em; }
+        .score-value { font-size: 1.5em; font-weight: bold; color: #7fff00; }
+        #game-container { background: #1a1a1a; border-radius: 15px; padding: 15px; box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+        #grid { display: grid; grid-template-columns: repeat(4, 100px); grid-template-rows: repeat(4, 100px); gap: 10px; }
+        .cell { width: 100px; height: 100px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: bold; transition: all 0.1s; }
+        .tile-2 { background: #eee; color: #776; } .tile-4 { background: #eed; color: #776; }
+        .tile-8 { background: #f2b179; color: #fff; } .tile-16 { background: #f59563; color: #fff; }
+        .tile-32 { background: #f67c5f; color: #fff; } .tile-64 { background: #f65e3b; color: #fff; }
+        .tile-128 { background: #edcf72; color: #fff; font-size: 1.8em; } .tile-256 { background: #edcc61; color: #fff; font-size: 1.8em; }
+        .tile-512 { background: #edc850; color: #fff; font-size: 1.8em; } .tile-1024 { background: #edc53f; color: #fff; font-size: 1.5em; }
+        .tile-2048 { background: #edc22e; color: #fff; font-size: 1.5em; box-shadow: 0 0 30px rgba(237, 194, 46, 0.8); }
+        .tile-super { background: #3c3a32; color: #fff; font-size: 1.3em; }
+        .btn { background: #fff; color: #000; border: none; padding: 12px 30px; font-size: 1em; font-weight: bold; border-radius: 25px; cursor: pointer; transition: all 0.3s; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+        #controls { margin-top: 10px; text-align: center; color: #aaa; }
+        .key { background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px; color: #fff; font-family: monospace; }
+        #game-over, #win-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
+        .screen-title { color: #fff; font-size: 3em; margin-bottom: 20px; }
+        #win-screen .screen-title { color: #7fff00; }
+    </style>
+</head>
+<body>
+    <div id="header"><h1>2048</h1></div>
+    <div id="game-wrapper">
+        <div id="score-board">
+            <div class="score-box"><div class="score-label">SCORE</div><div class="score-value" id="score">0</div></div>
+            <div class="score-box"><div class="score-label">BEST</div><div class="score-value" id="best">0</div></div>
+        </div>
+        <div id="game-container"><div id="grid"></div></div>
+        <button class="btn" onclick="newGame()">NEW GAME</button>
+        <div id="controls">
+            <p><span class="key">↑</span> <span class="key">↓</span> <span class="key">←</span> <span class="key">→</span> or <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> to move tiles</p>
+            <p>Join the tiles, get to <strong style="color:#edc22e">2048!</strong></p>
+        </div>
+    </div>
+    <div id="game-over"><div class="screen-title">GAME OVER</div><button class="btn" onclick="newGame()">TRY AGAIN</button></div>
+    <div id="win-screen"><div class="screen-title">YOU WIN!</div><p style="color:#aaa;margin-bottom:20px">You reached 2048!</p><button class="btn" onclick="keepPlaying()">KEEP GOING</button></div>
+    <script>
+        const G = 4;
+        let grid = [], score = 0, best = parseInt(localStorage.getItem('2048-best')) || 0, gameOver = false, hasWon = false;
+        document.getElementById('best').textContent = best;
+        
+        function newGame() {
+            grid = Array(G).fill(null).map(() => Array(G).fill(0));
+            score = 0; gameOver = false; hasWon = false;
+            document.getElementById('score').textContent = score;
+            document.getElementById('game-over').style.display = 'none';
+            document.getElementById('win-screen').style.display = 'none';
+            addRandom(); addRandom();
+            render();
+        }
+        
+        function addRandom() {
+            let empty = [];
+            for (let r = 0; r < G; r++) for (let c = 0; c < G; c++) if (grid[r][c] === 0) empty.push([r, c]);
+            if (empty.length) { let [r, c] = empty[Math.floor(Math.random() * empty.length)]; grid[r][c] = Math.random() < 0.9 ? 2 : 4; }
+        }
+        
+        function render() {
+            let g = document.getElementById('grid');
+            g.innerHTML = '';
+            for (let r = 0; r < G; r++) for (let c = 0; c < G; c++) {
+                let val = grid[r][c], cell = document.createElement('div');
+                cell.className = 'cell' + (val > 0 ? ' tile-' + Math.min(val, 2048) : '');
+                if (val > 2048) cell.classList.add('tile-super');
+                cell.textContent = val || '';
+                g.appendChild(cell);
+            }
+        }
+        
+        function slide(row) {
+            let arr = row.filter(v => v !== 0);
+            for (let i = 0; i < arr.length - 1; i++) {
+                if (arr[i] === arr[i + 1]) { arr[i] *= 2; score += arr[i]; arr.splice(i + 1, 1); if (arr[i] === 2048 && !hasWon) { hasWon = true; setTimeout(() => document.getElementById('win-screen').style.display = 'flex', 200); } }
+            }
+            while (arr.length < G) arr.push(0);
+            return arr;
+        }
+        
+        function rotate() {
+            let n = [];
+            for (let c = 0; c < G; c++) { n.push([]); for (let r = G - 1; r >= 0; r--) n[c].push(grid[r][c]); }
+            return n;
+        }
+        
+        function move(dir) {
+            if (gameOver) return;
+            let prev = JSON.stringify(grid);
+            for (let i = 0; i < dir; i++) grid = rotate();
+            for (let r = 0; r < G; r++) grid[r] = slide(grid[r]);
+            for (let i = 0; i < (4 - dir) % 4; i++) grid = rotate();
+            if (JSON.stringify(grid) !== prev) {
+                addRandom(); render();
+                document.getElementById('score').textContent = score;
+                if (score > best) { best = score; localStorage.setItem('2048-best', best); document.getElementById('best').textContent = best; }
+                if (!canMove()) { gameOver = true; setTimeout(() => document.getElementById('game-over').style.display = 'flex', 300); }
+            }
+        }
+        
+        function canMove() {
+            for (let r = 0; r < G; r++) for (let c = 0; c < G; c++) {
+                if (grid[r][c] === 0) return true;
+                if (c < G - 1 && grid[r][c] === grid[r][c + 1]) return true;
+                if (r < G - 1 && grid[r][c] === grid[r + 1][c]) return true;
+            }
+            return false;
+        }
+        
+        function keepPlaying() { document.getElementById('win-screen').style.display = 'none'; }
+        
+        document.addEventListener('keydown', e => { switch(e.key) { case 'ArrowUp': case 'w': case 'W': move(0); break; case 'ArrowRight': case 'd': case 'D': move(1); break; case 'ArrowDown': case 's': case 'S': move(2); break; case 'ArrowLeft': case 'a': case 'A': move(3); break; } });
+        document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; });
+        document.addEventListener('touchend', e => {
+            let dx = e.changedTouches[0].clientX - touchStartX, dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > Math.abs(dy)) move(dx > 0 ? 1 : 3); else move(dy > 0 ? 2 : 0);
+        });
+        newGame();
+    </script>
+</body>
+</html>
