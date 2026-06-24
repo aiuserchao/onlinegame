@@ -1,0 +1,13 @@
+{
+  "date": "2026-06-18",
+  "report_time_utc": "2026-06-18T17:11:00Z",
+  "price_data": {
+    "reference_close_yesterday": 213.59,
+    "current_day_status": "DOWN approximately 5%",
+    "estimated_current_price": 203,
+    "after_hours_price": 195.17,
+    "change_from_ipo_pct": "+44.6% (from $135 IPO)",
+    "market_cap_approx": 2.66,
+    "notes": "Normal profit-taking pullback after explosive 5-day rally"
+  }
+}

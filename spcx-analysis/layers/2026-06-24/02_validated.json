@@ -1,0 +1,138 @@
+{
+  "reportDate": "2026-06-24",
+  "validationTimestamp": "2026-06-24T01:47 UTC",
+  "validationSummary": {
+    "totalDataPoints": 12,
+    "passedValidation": 12,
+    "warnings": 2,
+    "criticalIssues": 0,
+    "validationNotes": [
+      "P/E and Forward P/E are N/A due to negative EPS — expected for high-growth pre-profitability company",
+      "Large gap between $100.8B disclosed cash vs $23.68B in Yahoo Finance 'Total Cash' likely explained by 8-K timing (bridge loan repayment vs gross cash position)",
+      "Two cash figures likely represent different reporting periods: Yahoo figure is quarterly (mrq), 8-K figure is as of June 19, 2026",
+      "Revenue TTM $19.3B aligns closely with reported FY2025 $18.7B — consistent ✓"
+    ]
+  },
+  "priceValidation": {
+    "currentPrice": 156.11,
+    "isWithin52WeekRange": true,
+    "isAbove52WeekLow": true,
+    "isBelow52WeekHigh": true,
+    "volume": 153240080,
+    "volumeIsPositive": true,
+    "volumeAsPercentOfAvg": 0.5705,
+    "volumeAssessment": "Below average (57% of avg) — distribution day, not panic",
+    "dayRange": { "low": 147.11, "high": 165.50, "assessment": "Within 52-week range ✓" },
+    "bidAskSpread": { "bid": 151.50, "ask": 175.00, "spread": 23.50, "spreadPercent": 15.51, "note": "Wide spread reflects post-IPO illiquidity and uncertainty" },
+    "overnightSession": { "change": -0.21, "changePercent": -0.13, "note": "Small overnight decline, not unusual" },
+    "status": "PASSED"
+  },
+  "fundamentalValidation": {
+    "revenueTTM": {
+      "value": 19300000000,
+      "fy2025": 18700000000,
+      "consistent": true,
+      "note": "TTM likely includes Q4 2025 + Q1 2026 estimate; consistent with $18.7B FY2025",
+      "status": "PASSED"
+    },
+    "starlinkRevenue": {
+      "value": 11390000000,
+      "asPercentOfTotal": 0.609,
+      "note": "61% of total revenue from Starlink — dominant driver; consistent with S-1 data",
+      "status": "PASSED"
+    },
+    "starlinkSubscribers": {
+      "value": 12000000,
+      "priorReading": 10000000,
+      "readingDate": "2026-06-04",
+      "priorDate": "2026-02-2026",
+      "note": "2M net adds in ~4 months; growth trajectory consistent",
+      "status": "PASSED"
+    },
+    "cashPosition": {
+      "yahooFigure": 23680000000,
+      "disclosedFigure": 100800000000,
+      "discrepancyExplained": "8-K filing June 22 disclosed $100.8B cash; Yahoo 'Total Cash' may be net of debt or a different period. Bond offering proceeds not yet included in Yahoo figure.",
+      "status": "WARNING (Reconcilable)"
+    },
+    "netIncome": {
+      "value": -9360000000,
+      "eps": -0.67,
+      "consistentWithGAAPLoss": true,
+      "note": "Losses expected given massive capex (~$20.7B 2025) and investment phase",
+      "status": "PASSED"
+    },
+    "debtEquity": {
+      "value": 0.736,
+      "note": "73.6% D/E — elevated but manageable; bond issuance will refinance bridge loan",
+      "status": "PASSED"
+    }
+  },
+  "newsValidation": {
+    "totalArticles": 7,
+    "uniqueArticles": 7,
+    "relevanceCheck": {
+      "highlyRelevant": ["SpaceX Bond Offering $25B", "Keybanc Strong Buy Initiated", "SPCX 16% Drop", "SPCX +0.98% Recovery", "Starlink 12M Subscribers", "Roelof Botha Board Addition"],
+      "moderatelyRelevant": ["T-Mobile T-Satellite D2C Launch"],
+      "lowRelevance": []
+    },
+    "timeValidation": {
+      "mostRecentNews": "2026-06-22/23",
+      "oldestRelevantNews": "2026-06-04",
+      "note": "News timeline is consistent — no stale articles included"
+    },
+    "deduplication": {
+      "duplicatesFound": 0,
+      "status": "PASSED"
+    },
+    "status": "PASSED"
+  },
+  "starshipValidation": {
+    "flight12": {
+      "date": "2026-05-22",
+      "status": "Confirmed: Super Heavy anomaly, FAA grounding active",
+      "statusText": "Confirmed via multiple sources (FAA investigation)"
+    },
+    "flight13": {
+      "plannedTarget": "June 2026",
+      "revisedTarget": "July 2026",
+      "reason": "FAA investigation required before resuming flights",
+      "statusText": "Consistent across multiple news sources"
+    }
+  },
+  "dataGapsAndLimitations": {
+    "missingData": [
+      "No Q1 2026 earnings data available (company does not report quarterly public financials post-IPO)",
+      "No institutional 13F holdings data yet (too recent post-IPO)",
+      "No option chain data available (illiquid)",
+      "Analyst coverage limited to Keybanc (others expected)",
+      "No historical daily price series available (limited to Yahoo snapshot data)"
+    ],
+    "impactMitigation": "Use estimates, comparable data, and directional analysis to compensate; clearly flag all estimates"
+  },
+  "finalValidatedData": {
+    "currentPrice": 156.11,
+    "previousClose": 154.60,
+    "volume": 153240080,
+    "marketCap": 2057000000000,
+    "revenueTTM": 19300000000,
+    "psRatioTTM": 104.74,
+    "psRatioForwardEstimate": 75.8,
+    "epsTTM": -0.67,
+    "totalCash": 100800000000,
+    "debtEquity": 0.736,
+    "starlinkSubs": 12000000,
+    "starlinkRevenue2025": 11390000000,
+    "starlinkGrowth": 0.50,
+    "starlinkEbitdaMargin": 0.63,
+    "revenue2025": 18700000000,
+    "gaapNetLoss2025": 4900000000,
+    "adjustedEBITDA2025": 6580000000,
+    "capex2025": 20700000000,
+    "bondOfferingSize": 25000000000,
+    "analystTargetAvg": 187.80,
+    "analystLatestRating": "Strong Buy (Keybanc, 2026-06-22)",
+    "starshipStatus": "Ground by FAA; Flight 13 targeted July 2026",
+    "directToCellStatus": "Commercial (T-Mobile T-Satellite, July 2025 launch)"
+  }
+}

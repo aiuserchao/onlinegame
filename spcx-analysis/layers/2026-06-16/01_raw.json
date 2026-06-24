@@ -1,0 +1,159 @@
+{
+  "fetch_timestamp": "2026-06-16T23:02:53Z",
+  "ticker": "SPCX",
+  "company_name": "Space Exploration Technologies Corp.",
+  "price_data": {
+    "current_price": 201.80,
+    "previous_close": 192.50,
+    "open": 200.42,
+    "bid": 198.00,
+    "ask": 209.50,
+    "day_high": 225.64,
+    "day_low": 195.13,
+    "52week_high": 225.64,
+    "52week_low": 149.34,
+    "volume": 315224407,
+    "avg_volume": 384879900,
+    "after_hours_price": 205.00,
+    "after_hours_change": 3.20
+  },
+  "market_cap": {
+    "intraday": 2642000000000,
+    "as_of_06_15": 2520000000000
+  },
+  "valuation_measures": {
+    "trailing_p_e": null,
+    "forward_p_e": null,
+    "peg_ratio_5yr": null,
+    "price_sales_ttm": 130.41,
+    "price_book_mrq": 72.97,
+    "ev_revenue": 131.29,
+    "ev_ebitda": 1340
+  },
+  "fundamentals": {
+    "revenue_ttm": 19300000000,
+    "net_income_ttm": -9360000000,
+    "diluted_eps_ttm": -0.67,
+    "total_cash_mrq": 23680000000,
+    "total_debt_equity_mrq": 0.736,
+    "profit_margin_ttm": -0.45,
+    "q1_2026_revenue": 4694000000,
+    "q1_2026_profit": 1200000000
+  },
+  "ipo_data": {
+    "ipo_date": "2026-06-12",
+    "ipo_price": 135.00,
+    "shares_offered": 555555555,
+    "total_raised": 75000000000,
+    "pre_ipo_valuation_trillion": 1.77
+  },
+  "performance": {
+    "ytd_return": 0.3453,
+    "1y_return_spcx": 0.3453,
+    "1y_return_spx": 0.2450,
+    "3y_return_spcx": 0.3453,
+    "3y_return_spx": 0.7034,
+    "5y_return_spcx": 0.3453,
+    "5y_return_spx": 0.7784
+  },
+  "analyst_metrics": {
+    "price_target_low": 63.00,
+    "price_target_avg": 164.00,
+    "price_target_high": 227.00,
+    "1y_target_est": 164.00,
+    "latest_rating_date": "2026-06-12",
+    "latest_rating_analyst": "CFRA",
+    "latest_rating_action": "Initiated",
+    "latest_rating": "Sell",
+    "latest_price_target": 115.00
+  },
+  "news": [
+    {
+      "title": "SpaceX Stock (SPCX) Live: Largest IPO Ever Debuts",
+      "source": "techjournal.org",
+      "url": "https://techjournal.org/spacex-stock-spcx-nasdaq-debut-largest-ipo",
+      "date": "2026-06-12",
+      "snippet": "SpaceX stock officially trading. SPCX ticker debuted Nasdaq June 12, 2026. Fixed price $135, raised $75B, valued at ~$1.77T."
+    },
+    {
+      "title": "SpaceX (SPCX) IPO pricing announcement",
+      "source": "ir.spacex.com",
+      "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Pricing-of-Initial-Public-Offering/details.aspx",
+      "date": "2026-06-11",
+      "snippet": "555.6M shares at $135 each, raising $75B. Trading on Nasdaq from June 12, 2026 under SPCX."
+    },
+    {
+      "title": "SpaceX (SPCX) IPO live today at $135",
+      "source": "teslarati.com",
+      "url": "https://www.teslarati.com/spacex-ipo-day-june-12-2026/",
+      "date": "2026-06-12",
+      "snippet": "Largest IPO in history. Shares trade on Nasdaq starting June 12."
+    },
+    {
+      "title": "SPCX Stock Debut Puts IPO Mechanics and Space Sector in Focus",
+      "source": "marketbeat.com",
+      "url": "https://www.marketbeat.com/originals/mission-control-floating-in-spacexs-record-breaking-orbit/",
+      "date": "2026-06-12",
+      "snippet": "Historic public debut rewrites valuation architecture of orbital economy."
+    },
+    {
+      "title": "SpaceX Starship Flight 12",
+      "source": "spacex.com",
+      "url": "https://www.spacex.com/launches/starship-flight-12",
+      "date": "2026-05-22",
+      "snippet": "Starship V3 12th flight test May 22, 2026. First flight of V3 vehicles, Raptor 3 engines, Pad 2. Booster failed but ship reached orbit."
+    },
+    {
+      "title": "SpaceX Starship 12th test flight - booster failed",
+      "source": "mynews13.com",
+      "url": "https://mynews13.com/fl/orlando/space/2026/05/21/spacex-starship-12-test",
+      "date": "2026-05-22",
+      "snippet": "Starship V3 first flight from new Pad 2. Suborbital test flight."
+    },
+    {
+      "title": "Starlink subscriber growth ahead of IPO",
+      "source": "satnews.com",
+      "url": "https://satnews.com/2026/06/07/analyst-projects-massive-subscription-growth-for-starlink-ahead-of-imminent-spacex-ipo/",
+      "date": "2026-06-07",
+      "snippet": "Subscribers: 2.3M (2023) → 4.4M (2024) → 8.9M (2025) → 10.3M (Q1 2026)."
+    },
+    {
+      "title": "Starlink Revenue 2026: ~$15.5B, 7M+ subscribers",
+      "source": "valueaddvc.com",
+      "url": "https://valueaddvc.com/blog/starlink-revenue-2025-2026-subscriber-count-arpu-and-the-path-to-profitability",
+      "date": "2026-06-10",
+      "snippet": "7M+ subscribers mid-2026, up from 4.6M end 2024. 130+ countries."
+    },
+    {
+      "title": "SpaceX IPO reveals $1.2B Q1 profit and Starlink growth",
+      "source": "spacexstock.com",
+      "url": "https://spacexstock.com/spacex-ipo-q1-1-2b-profit-starlink-subscriber-growth/",
+      "date": "2026-06-14",
+      "snippet": "Q1 2026: $4.694B revenue, $1.188B Starlink operating income, 10.3M subscribers."
+    },
+    {
+      "title": "Starlink reaches 12M subscribers in 160 countries",
+      "source": "abit.ee",
+      "url": "https://abit.ee/en/wi-fi-routers-modems/starlink-spacex-12-million-subscribers-160-countries-direct-to-cell-satellite-internet-2026-en",
+      "date": "2026-06-15",
+      "snippet": "12M subscribers, 160+ countries. 10,300 satellites. 2026 target: 25M users."
+    }
+  ],
+  "starship_status": {
+    "last_flight": "Flight 12",
+    "flight_date": "2026-05-22",
+    "vehicle_version": "V3",
+    "new_features": ["Raptor 3 engines", "Pad 2 launch", "Super Heavy V3"],
+    "booster_recovery": "Failed",
+    "ship_status": "Completed suborbital mission",
+    "notes": "First V3 vehicles, booster failed but overall mission success"
+  },
+  "starlink_metrics": {
+    "subscribers_q1_2026": 10300000,
+    "subscribers_mid_2026": 12000000,
+    "satellites_active": 10300,
+    "countries": 160,
+    "target_end_2026": 25000000,
+    "revenue_2025_estimate": 15500000000
+  }
+}

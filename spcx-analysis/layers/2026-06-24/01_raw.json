@@ -1,0 +1,211 @@
+{
+  "reportDate": "2026-06-24",
+  "reportTime": "2026-06-24 01:45 UTC",
+  "source": "Yahoo Finance SPCX + web research",
+  "priceData": {
+    "currentPrice": 156.11,
+    "previousClose": 154.60,
+    "open": 151.03,
+    "bid": 151.50,
+    "ask": 175.00,
+    "dayHigh": 165.50,
+    "dayLow": 147.11,
+    "week52High": 225.64,
+    "week52Low": 147.11,
+    "volume": 153240080,
+    "avgVolume": 268629350,
+    "marketCap": 2057000000000,
+    "marketCapDisplay": "$2.057T",
+    "changeFromPreviousClose": 1.51,
+    "changePercentFromPreviousClose": 0.98,
+    "overnightChange": -0.21,
+    "overnightChangePercent": -0.13
+  },
+  "valuationMetrics": {
+    "peRatioTTM": null,
+    "epsTTM": -0.67,
+    "revenueTTM": 19300000000,
+    "revenueTTMDisplay": "$19.3B",
+    "netIncomeTTM": -9360000000,
+    "profitMargin": -0.45,
+    "priceToSalesTTM": 104.74,
+    "priceToBook": 58.98,
+    "evRevenue": 106.25,
+    "evEbitda": 1090,
+    "totalCash": 23680000000,
+    "totalDebtEquity": 0.736,
+    "forwardPE": null,
+    "pegRatio": null
+  },
+  "analystData": {
+    "priceTargetLow": 62.00,
+    "priceTargetAverage": 187.80,
+    "priceTargetHigh": 310.00,
+    "latestRating": {
+      "date": "2026-06-22",
+      "firm": "Keybanc",
+      "action": "Initiated",
+      "rating": "Strong Buy",
+      "sectorWeight": "Sector Weight"
+    },
+    "ratingsDistribution": {
+      "strongBuy": 1,
+      "buy": 0,
+      "hold": 0,
+      "underperform": 0,
+      "sell": 0
+    }
+  },
+  "returns": {
+    "ytdReturn": 0.0407,
+    "ytdReturnSPCX": "4.07%",
+    "ytdReturnSPX": "7.60%",
+    "oneYearReturnSPCX": "4.07%",
+    "oneYearReturnSPX": "22.24%",
+    "threeYearReturnSPCX": "4.07%",
+    "threeYearReturnSPX": "69.39%"
+  },
+  "fundamentalsSpaceX": {
+    "revenue2025": 18700000000,
+    "revenue2025Growth": 0.33,
+    "starlinkRevenue2025": 11390000000,
+    "starlinkRevenue2025Growth": 0.50,
+    "starlinkSubscribers": 12000000,
+    "starlinkSubscribersFeb2026": 10000000,
+    "starlinkSubscribersDec2024": 4600000,
+    "starlinkOperatingIncome2025": 4500000000,
+    "starlinkEbitdaMargin": 0.63,
+    "gaapNetLoss2025": 4900000000,
+    "adjustedEBITDA2025": 6580000000,
+    "capex2025": 20700000000,
+    "capexQ12026": 10100000000,
+    "totalCash": 100800000000,
+    "ipoValuationRange": "1.5-2.0T",
+    "s1FilingDate": "2026-05-20",
+    "ipoDate": "2026-06-12",
+    "ipoPrice": 135.00
+  },
+  "catalysts": {
+    "starship": {
+      "flight12": {
+        "date": "2026-05-22",
+        "status": "Super Heavy booster anomaly, FAA grounded",
+        "result": "FAA investigation opened, vehicle grounded"
+      },
+      "flight13": {
+        "targetDate": "July 2026",
+        "status": "Delayed from June 2026 due to FAA investigation"
+      },
+      "v3Development": "Ongoing",
+      "fullyReusable": "Achieved booster + spacecraft full recovery"
+    },
+    "starlink": {
+      "subscribers": 12000000,
+      "coverage": "155+ countries",
+      "populationCoverage": "3.2B+ people",
+      "satellitesInOrbit": 8800,
+      "satelliteTarget": 12000,
+      "directToCell": {
+        "status": "Commercial launch July 2025 (T-Mobile T-Satellite)",
+        "satellitesDeployed": 650,
+        "usersCovered": 8000000,
+        "countriesCovered": 11,
+        "textSpeed": "10 Mbps per beam",
+        "monthlyPrice": 10,
+        "voiceAndData": "Late 2025-2026"
+      }
+    },
+    "governmentContracts": {
+      "artemis": "NASA contracted Starship as lunar lander",
+      "starshield": "National security payloads",
+      "defenseModernization": "Ongoing"
+    },
+    "corporate": {
+      "ipo": "June 12, 2026 - largest US IPO in history",
+      "bondOffering": {
+        "announcement": "2026-06-22",
+        "amount": 25000000000,
+        "purpose": "Repay bridge loan facility + general corporate",
+        "settlement": "2026-06-26",
+        "ratings": ["BBB-tier investment grade"],
+        "maturities": "5-30 years"
+      },
+      "cashDisclosure": 100800000000,
+      "boardAddition": {
+        "date": "2026-06-17",
+        "member": "Roelof Botha (Sequoia)",
+        "significance": "Long-term institutional ally"
+      }
+    }
+  },
+  "macroData": {
+    "fedFundsRate": "3.50%-3.75%",
+    "fedAction": "Held rates unchanged June 17 FOMC",
+    "fedDotPlot": " hawkish shift - 17/18 officials see upside inflation risk",
+    "rateOutlook": "No cuts expected in 2026, possible hike",
+    "qtStatus": "Ongoing - liquidity tightening",
+    "vix": 20,
+    "dxyTrend": "Strong (Fed hawkishness supporting USD)",
+    "creditSpreads": "Moderate - soft landing expected"
+  },
+  "recentNews": [
+    {
+      "date": "2026-06-22/23",
+      "headline": "SpaceX Initiates First Bond Sale ($25B); $100.8B Cash Disclosed",
+      "source": "IR SpaceX / Reuters",
+      "impact": "Positive - strengthens balance sheet, reduces refinancing risk",
+      "priceReaction": "Negative - stock fell 16% same day (bond + IPO unlock + macro concerns)"
+    },
+    {
+      "date": "2026-06-22",
+      "headline": "Keybanc Initiates SPCX at Strong Buy",
+      "source": "Keybanc",
+      "impact": "Positive - first institutional coverage = Buy rating",
+      "priceReaction": "Limited - stock fell 16% despite Strong Buy rating"
+    },
+    {
+      "date": "2026-06-22",
+      "headline": "SPCX Falls 16% — Three Days of Losses Post-IPO",
+      "source": "CNBC",
+      "impact": "Negative short-term sentiment",
+      "priceReaction": "Stock closed $154.60, continuing selloff from $225 peak"
+    },
+    {
+      "date": "2026-06-23",
+      "headline": "SPCX Recovers +0.98% to $156.11 — Dead Cat Bounce or Base?",
+      "source": "Yahoo Finance",
+      "impact": "Neutral - modest recovery after 16% drop",
+      "priceReaction": "Stock recovered slightly but remains well below $185 from two days prior"
+    },
+    {
+      "date": "2026-06-16",
+      "headline": "Roelof Botha (Sequoia) Joins SpaceX Board",
+      "source": "SpaceX IR",
+      "impact": "Positive - institutional credibility + Sequoia partnership signal",
+      "priceReaction": "Limited at the time, price continued higher briefly before reversing"
+    },
+    {
+      "date": "2026-06-04",
+      "headline": "Starlink Crosses 12M Subscribers",
+      "source": "Various",
+      "impact": "Positive - growth acceleration continuing",
+      "priceReaction": "Positive - 12M users vs 10M in Feb 2026"
+    },
+    {
+      "date": "July 2025",
+      "headline": "T-Mobile T-Satellite (Starlink Direct-to-Cell) Launches Commercially",
+      "source": "T-Mobile",
+      "impact": "Positive - new revenue stream from 500K+ sq miles coverage",
+      "priceReaction": "Pre-IPO catalyst, positive long-term"
+    }
+  ],
+  "yesterday": {
+    "date": "2026-06-23",
+    "closePrice": 154.60,
+    "volume": 165600000,
+    "dayChangePercent": -16.43,
+    "dayHigh": 176.69,
+    "dayLow": 154.00,
+    "note": "Massive drop; Keybanc Strong Buy initiated same day; bond offering announced"
+  }
+}

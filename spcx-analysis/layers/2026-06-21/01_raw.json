@@ -1,0 +1,176 @@
+{
+  "report_date": "2026-06-21",
+  "report_time_utc": "2026-06-21 00:30 UTC",
+  "data_source": "Yahoo Finance (SPCX)",
+  
+  "price_data": {
+    "current_price": 185.00,
+    "previous_close": 191.82,
+    "open": 188.40,
+    "bid": 184.17,
+    "ask": 200.00,
+    "day_high": 190.00,
+    "day_low": 172.11,
+    "52_week_high": 225.64,
+    "52_week_low": 149.34,
+    "after_hours_price": 181.65,
+    "after_hours_change_pct": -1.81,
+    "price_change": -6.82,
+    "price_change_pct": -3.56,
+    "volume": 254914736,
+    "avg_volume": 288941860,
+    "volume_ratio": 0.882
+  },
+  
+  "market_data": {
+    "market_cap": 2437000000000,
+    "enterprise_value": 2450000000000,
+    "pe_ttm": null,
+    "eps_ttm": -0.67,
+    "forward_pe": null,
+    "peg_ratio": null,
+    "price_sales_ttm": 125.33,
+    "price_book": 70.58,
+    "ev_revenue": 127.00,
+    "ev_ebitda": 1300,
+    "beta": null,
+    "revenue_ttm": 19300000000,
+    "net_income_common": -9360000000,
+    "total_cash": 23680000000,
+    "total_debt_equity": 73.60,
+    "profit_margin": -45.00,
+    "shares_outstanding_estimated": 13172972973
+  },
+  
+  "analyst_data": {
+    "target_low": 62.00,
+    "target_average": 187.80,
+    "target_current": 185.00,
+    "target_high": 310.00,
+    "recommendations": {
+      "strong_buy": 4,
+      "buy": 1,
+      "hold": 2,
+      "underperform": 0,
+      "sell": 0
+    },
+    "latest_rating": {
+      "date": "2026-06-18",
+      "firm": "Oppenheimer",
+      "action": "Maintains Rating Outperform",
+      "price_target_change": "190 -> 250"
+    },
+    "consensus_rating": "Moderate Buy"
+  },
+  
+  "performance_data": {
+    "ytd_return": 23.33,
+    "sp500_ytd": 9.57,
+    "1_year_return": 23.33,
+    "sp500_1_year": 25.41,
+    "3_year_return": 23.33,
+    "sp500_3_year": 70.10,
+    "5_year_return": 23.33,
+    "sp500_5_year": 80.02
+  },
+  
+  "ipo_data": {
+    "ipo_date": "2026-06-12",
+    "ipo_price": 135.00,
+    "shares_issued": 555555555,
+    "first_day_close": 160.95,
+    "first_day_return_pct": 19.23,
+    "peak_price": 225.00,
+    "peak_return_from_ipo": 66.67
+  },
+  
+  "fundamentals": {
+    "revenue_ttm": 19300000000,
+    "q1_2026_revenue": 4690000000,
+    "annual_revenue_2024": 14200000000,
+    "annual_revenue_2025_estimate": 17100000000,
+    "net_income_ttm": -9360000000,
+    "eps_ttm": -0.67,
+    "q1_2026_eps": -1.27,
+    "total_cash": 23680000000,
+    "total_debt_equity_ratio": 73.60,
+    "free_cash_flow_2026_estimate": 5000000000,
+    "adjusted_ebitda_2025_estimate": 6600000000,
+    "gaap_net_loss_2025_estimate": 4900000000,
+    "revenue_segments": {
+      "starlink_pct": 58,
+      "launch_services_pct": 27,
+      "other_pct": 15
+    }
+  },
+  
+  "news": [
+    {
+      "date": "2026-06-20",
+      "source": "fool.com",
+      "title": "SpaceX Stock's Biggest Test Isn't Its Post-IPO Drop. It's Coming in Late July.",
+      "summary": "Lockup period expiration in late July poses biggest challenge for SPCX stock",
+      "relevance": "high"
+    },
+    {
+      "date": "2026-06-20",
+      "source": "fool.com",
+      "title": "1 Interesting Reason Why SpaceX Bought Cursor, and How It'll Impact Investors",
+      "summary": "SpaceX acquisition of Cursor AI could impact investor returns",
+      "relevance": "medium"
+    },
+    {
+      "date": "2026-06-20",
+      "source": "marketbeat.com",
+      "title": "MarketBeat Week in Review – 06/15 - 06/19",
+      "summary": "Markets closed higher on lower oil prices and chip stock rally",
+      "relevance": "low"
+    },
+    {
+      "date": "2026-06-18",
+      "source": "insidertrades.com",
+      "title": "SpaceX (NASDAQ:SPCX) CEO Elon Musk Sells 11,390 Shares",
+      "summary": "CEO Elon Musk sold 11,390 shares on June 18",
+      "relevance": "high"
+    },
+    {
+      "date": "2026-06-17",
+      "source": "marketbeat.com",
+      "title": "After SpaceX, Amazon Could Be The Next Best Space Stock (SPCX)",
+      "summary": "Amazon Project Leo offers space exposure at fraction of SpaceX valuation",
+      "relevance": "low"
+    },
+    {
+      "date": "2026-06-16",
+      "source": "marketbeat.com",
+      "title": "Gravity Check: Houston, SpaceX Has a Valuation Problem",
+      "summary": "Analysis of SpaceX valuation concerns post-IPO",
+      "relevance": "medium"
+    },
+    {
+      "date": "2026-06-16",
+      "source": "finance.yahoo.com",
+      "title": "SpaceX (SPCX) Is Up 14.9% After Record IPO And $60 Billion Cursor AI Deal",
+      "summary": "SpaceX completed largest IPO in history raising ~$75-86B, Cursor AI deal worth ~$60B",
+      "relevance": "high"
+    }
+  ],
+  
+  "catalysts": {
+    "starship_status": "V3 development in progress, critical for Mars mission",
+    "starlink_update": "Continuous expansion with regular launches, 29 satellites on June 12, 2026",
+    "government_contracts": "Investment-grade credit rating from Moody's, Fitch, S&P Global",
+    "recent_events": [
+      "Record IPO June 12, 2026 - $75-86B raised",
+      "Cursor AI acquisition ~$60B",
+      "Lockup period expiring late July 2026"
+    ]
+  },
+  
+  "comparable_companies": {
+    "tesla": {"p_s_ratio": "8-10x"},
+    "amazon": {"p_s_ratio": "4x"},
+    "nvidia": {"p_s_ratio": "35x"},
+    "palantir": {"p_s_ratio": "20x"}
+  }
+}

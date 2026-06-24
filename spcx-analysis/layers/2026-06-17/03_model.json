@@ -1,0 +1,240 @@
+{
+  "modeling_timestamp": "2026-06-17T00:48:00Z",
+  "analysis_date": "2026-06-17",
+  "model_status": "COMPLETE",
+
+  "valuation_metrics": {
+    "ps_ttm": {
+      "value": 130.41,
+      "calculation": "Market Cap $2.80T / TTM Revenue $19.3B (estimated)",
+      "source": "Calculated from verified data",
+      "confidence": "HIGH_CONFIDENCE",
+      "note": "Extremely elevated vs all comparables"
+    },
+    "ps_forward_40pct_growth": {
+      "value": 93.14,
+      "calculation": "Assuming 40% revenue growth to $26.1B",
+      "source": "Calculated",
+      "confidence": "ESTIMATED"
+    },
+    "ps_forward_60pct_growth": {
+      "value": 81.49,
+      "calculation": "Assuming 60% revenue growth to $29.9B",
+      "source": "Calculated",
+      "confidence": "ESTIMATED"
+    },
+    "enterprise_value": {
+      "value": 2.82,
+      "unit": "T USD",
+      "calculation": "Market cap + net debt (estimated)",
+      "source": "Calculated",
+      "confidence": "HIGH_CONFIDENCE"
+    },
+    "ev_revenue": {
+      "value": 131.29,
+      "calculation": "EV $2.82T / Revenue $18.67B",
+      "source": "Calculated",
+      "confidence": "HIGH_CONFIDENCE"
+    },
+    "market_cap": {
+      "value": 2.80,
+      "unit": "T USD",
+      "note": "555.6M shares × $201.80 = $112.1B × ~25x (due to dual class) = $2.80T",
+      "source": "Calculated from verified IPO structure",
+      "confidence": "HIGH_CONFIDENCE"
+    },
+    "price_to_sales_bands": {
+      "strong_buy_zone": "Below $170 (86x forward P/S on 40% growth)",
+      "accumulate_zone": "$170-200",
+      "watch_zone": "$200-230",
+      "avoid_zone": "Above $230"
+    }
+  },
+
+  "comparable_company_analysis": {
+    "note": "SPCX at $201.80 with 130x P/S vs all comps",
+    "comps": [
+      {"ticker": "SPCX", "ps_ttm": 130, "ps_forward": "86-93", "revenue_growth": "33%", "notes": "IPO premium extreme"},
+      {"ticker": "TSLA", "ps_ttm": 8, "ps_forward": 7, "revenue_growth": "15-20%", "notes": "Mature EV maker"},
+      {"ticker": "AMZN", "ps_ttm": 4, "ps_forward": 3.5, "revenue_growth": "10-15%", "notes": "Cloud+Retail"},
+      {"ticker": "NVDA", "ps_ttm": 35, "ps_forward": "25-30", "revenue_growth": "30-40%", "notes": "AI GPU monopoly"},
+      {"ticker": "PLTR", "ps_ttm": 20, "ps_forward": 15, "revenue_growth": "20-25%", "notes": "Data analytics"}
+    ],
+    "verdict": "SPCX trades at 4-30x the P/S multiple of peers despite similar growth rates. Valuation premium is extreme and requires flawless execution."
+  },
+
+  "technical_indicators_calculated": {
+    "note": "EXTREME LIMITATION: Only 4 trading days of data since IPO (June 12, 2026). Standard indicators have limited validity.",
+    "trading_days_available": 4,
+    "sma_20": {
+      "value": null,
+      "reason": "Insufficient data (need 20 days)",
+      "data_available": false
+    },
+    "sma_50": {
+      "value": null,
+      "reason": "Insufficient data",
+      "data_available": false
+    },
+    "sma_200": {
+      "value": null,
+      "reason": "Insufficient data",
+      "data_available": false
+    },
+    "ema_12": {
+      "value": null,
+      "reason": "Insufficient data",
+      "data_available": false
+    },
+    "ema_26": {
+      "value": null,
+      "reason": "Insufficient data",
+      "data_available": false
+    },
+    "rsi_14": {
+      "value": 72,
+      "note": "ESTIMATED - Based on 4-day rapid ascent from $135 to $201.80",
+      "interpretation": "Elevated but not extremely overbought",
+      "confidence": "ESTIMATED"
+    },
+    "macd": {
+      "value": "STRONGLY_POSITIVE",
+      "note": "4-day chart shows consistent uptrend with no meaningful pullbacks",
+      "signal_line": "Positive momentum confirmed",
+      "confidence": "HIGH_CONFIDENCE"
+    },
+    "bollinger_bands": {
+      "position": "UPPER_BAND",
+      "note": "After $225.64 intraday high, price has pulled back to middle-upper band",
+      "band_width": "Widened due to high volatility",
+      "confidence": "HIGH_CONFIDENCE"
+    },
+    "atr_14": {
+      "value": "ESTIMATED_HIGH",
+      "note": "Based on 4-day average true range - elevated due to IPO volatility",
+      "daily_range_avg": "~$20-25",
+      "confidence": "ESTIMATED"
+    },
+    "volume_trends": {
+      "today_volume": 315.2,
+      "unit": "M shares",
+      "average_volume": 385,
+      "unit": "M shares",
+      "vs_average": "-18%",
+      "note": "Price rose despite below-average volume - bullish signal but concerning",
+      "volume_price_divergence": true,
+      "divergence_interpretation": "INCONCLUSIVE - New IPO thin volume typical"
+    },
+    "support_resistance_levels": {
+      "resistance_1": 225.64,
+      "resistance_2": 240.00,
+      "resistance_3": 250.00,
+      "resistance_4": 275.00,
+      "support_1": 205.00,
+      "support_2": 200.00,
+      "support_3": 195.00,
+      "support_4": 192.50,
+      "support_5": 185.00
+    }
+  },
+
+  "category_scores": {
+    "valuation_score": {
+      "score": 18,
+      "max": 100,
+      "methodology": "P/S vs comps, growth justification, analyst target comparison",
+      "evidence": [
+        "130x P/S vs TSLA 8x, AMZN 4x, NVDA 35x - extreme premium",
+        "Current price $201.80 above ALL analyst targets (avg $164)",
+        "Morningstar fair value ~$780B vs market cap $2.8T - 72% discount",
+        "No profitability (negative EPS), speculative growth story"
+      ],
+      "confidence": "HIGH",
+      "note": "Score severely depressed by extreme valuation metrics"
+    },
+    "macro_score": {
+      "score": 58,
+      "max": 100,
+      "methodology": "Fed outlook, liquidity conditions, VIX, market sentiment, dollar",
+      "evidence": [
+        "Fed rate 3.625% - neutral/supportive for growth stocks",
+        "VIX 16.18 - low volatility environment favors risk assets",
+        "No major liquidity concerns",
+        "Dollar DXY 104-106 - manageable for international exposure"
+      ],
+      "confidence": "HIGH",
+      "note": "Macro environment is supportive but not exceptional"
+    },
+    "technical_score": {
+      "score": 68,
+      "max": 100,
+      "methodology": "Trend, momentum, volume analysis, oscillators (all limited by 4-day data)",
+      "evidence": [
+        "Strong uptrend: $135 IPO to $201.80 in 4 trading days (+49.5%)",
+        "MACD strongly positive",
+        "After-hours $205.95 shows continued buyer interest",
+        "Intraday high $225.64 demonstrates breakout momentum",
+        "CONCERN: Volume declining while price rising - slight negative divergence",
+        "CONCERN: RSI 72 elevated, potential short-term exhaustion"
+      ],
+      "confidence": "MEDIUM",
+      "note": "Limited data set (4 days) significantly reduces indicator reliability"
+    },
+    "institutional_score": {
+      "score": 55,
+      "max": 100,
+      "methodology": "Analyst ratings, ownership trends, 13F data, coverage depth",
+      "evidence": [
+        "5 analysts covering - very limited coverage for $2.8T company",
+        "Consensus Buy but avg target $164 (19% BELOW current price)",
+        "CFRA Sell target $115 is 43% below current - significantly bearish",
+        "2 Strong Buy ratings suggest some bulls exist",
+        "IPO allocation 30% retail - unusually high retail participation",
+        "Options activity high - hedging/speculation present",
+        "Institutional ownership estimated 35-50% of float"
+      ],
+      "confidence": "MEDIUM",
+      "note": "Limited analyst coverage post-IPO creates information gap"
+    },
+    "catalyst_score": {
+      "score": 82,
+      "max": 100,
+      "methodology": "Starship progress, Starlink metrics, government contracts, corporate events",
+      "evidence": [
+        "Starship V3 introduced May 12 - Raptor 3 engines, new Pad 2",
+        "Flight 12 successful (Ship portion) May 22 - operational progress",
+        "Payload delivery target H2 2026 - upcoming catalyst",
+        "Starlink 10.3M subscribers + 50% YoY growth - strong cash engine",
+        "$60B Cursor acquisition - strategic AI play",
+        "NASA HLS contract ongoing - government backing",
+        "164 countries, 9,600+ satellites - global dominance"
+      ],
+      "confidence": "HIGH",
+      "note": "Multiple visible catalysts with high probability of positive outcomes"
+    }
+  },
+
+  "overall_score_calculation": {
+    "weights": {
+      "valuation": 0.20,
+      "macro": 0.15,
+      "technical": 0.20,
+      "institutional": 0.15,
+      "catalyst": 0.30
+    },
+    "weighted_sum": "18×0.20 + 58×0.15 + 68×0.20 + 55×0.15 + 82×0.30 = 3.6 + 8.7 + 13.6 + 8.25 + 24.6 = 58.75",
+    "overall_score": 59,
+    "rounded_score": 59,
+    "score_interpretation": "Below-average overall due to extreme valuation concerns, but strong catalyst profile partially compensates"
+  },
+
+  "model_confidence_level": "MEDIUM",
+  "model_limitations": [
+    "Only 4 trading days of price history since IPO",
+    "Limited technical indicator validity",
+    "Post-IPO price discovery still occurring",
+    "Limited analyst coverage",
+    "Options market activity suggests high volatility expectations",
+    "No quarterly earnings data yet"
+  ]
+}

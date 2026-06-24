@@ -1,0 +1,194 @@
+{
+  "report_date": "2026-06-23",
+  "report_time_utc": "2026-06-23T00:57:00Z",
+  "data_source": "Yahoo Finance (SPCX), web searches",
+  "fetch_timestamp": "2026-06-23T00:59:00Z",
+  
+  "price_data": {
+    "ticker": "SPCX",
+    "exchange": "NASDAQ",
+    "current_price": 154.60,
+    "previous_close": 185.00,
+    "change": -30.40,
+    "change_pct": -16.43,
+    "day_open": 176.04,
+    "day_high": 176.69,
+    "day_low": 154.00,
+    "week52_high": 225.64,
+    "week52_low": 149.34,
+    "volume": 165553299,
+    "avg_volume": 288941860,
+    "avg_volume_pct_of_day": 57.3,
+    "extended_hours_price": 156.82,
+    "extended_hours_change_pct": 1.44
+  },
+  
+  "market_cap_data": {
+    "market_cap": 2040000000000,
+    "enterprise_value": 2450000000000,
+    "market_cap_sources": {
+      "yahoo_finance": 2037000000000,
+      "benzinga": 2040000000000,
+      "marketbeat": 1140000000000,
+      "fool_q2": 2600000000000
+    },
+    "note": "Market cap varies across sources; using ~$2.04T based on 154.60 price"
+  },
+  
+  "valuation_measures": {
+    "ps_ttm": 125.33,
+    "pb_mrq": 70.58,
+    "ev_revenue": 127.0,
+    "ev_ebitda": 1300,
+    "pe_ttm": null,
+    "forward_pe": null,
+    "peg_ratio": null,
+    "eps_ttm": -0.67
+  },
+  
+  "financials": {
+    "revenue_ttm": 19300000000,
+    "net_income_ttm": -9360000000,
+    "total_cash": 23680000000,
+    "total_debt": 29100000000,
+    "debt_equity_ratio": 0.736,
+    "profit_margin": -0.45,
+    "revenue_growth_yoy": 0.154,
+    "segments_2025": {
+      "starlink_revenue": 11400000000,
+      "ai_revenue": 3200000000,
+      "launch_services": "remainder"
+    },
+    "quarterly_q1_2026": {
+      "revenue": 4690000000,
+      "net_loss": 4270000000,
+      "revenue_growth_yoy": 0.154
+    },
+    "annual_2025": {
+      "revenue": 18700000000,
+      "net_loss": 4900000000,
+      "ai_operating_loss": 6400000000,
+      "ai_capex": 12700000000
+    },
+    "cash_position_q1_2026": 29100000000
+  },
+  
+  "ipo_data": {
+    "ipo_price": 135.00,
+    "pricing_date": "2026-06-11",
+    "first_trading_date": "2026-06-12",
+    "opening_price": 150.00,
+    "first_day_close": 160.95,
+    "first_day_return_pct": 19.22,
+    "recent_high_date": "2026-06-16",
+    "recent_high_price": 201.80,
+    "total_shares": 555600000,
+    "shares_float_pct": 0.30,
+    "lockup_period_months": 6
+  },
+  
+  "starlink_metrics": {
+    "subscribers_q1_2026": 10300000,
+    "subscribers_reported": 12000000,
+    "countries": 164,
+    "satellites": 10300,
+    "arpu_q1_2026_monthly": 66,
+    "arpu_2025_monthly": 81,
+    "arpu_2024_monthly": 91,
+    "revenue_2025": 11400000000,
+    "revenue_2026_proj": 15500000000,
+    "operating_income_q1_2026": 1188000000,
+    "target_subscribers_end_2026": 25000000,
+    "growth_rate": 1.58
+  },
+  
+  "ai_metrics": {
+    "revenue_2025": 3200000000,
+    "revenue_growth_yoy": 0.222,
+    "operating_loss_2025": 6400000000,
+    "capex_2025": 12700000000,
+    "capex_q1_2026": 7700000000,
+    "anthropic_deal_monthly": 1250000000,
+    "anthropic_deal_duration_months": 36,
+    "anthropic_deal_total": 45000000000
+  },
+  
+  "debt_structure": {
+    "total_debt": 29100000000,
+    "bridge_loan": 20000000000,
+    "bridge_loan_due": "2027-09-02",
+    "bridge_loan_extension_possible": "2-3 months"
+  },
+  
+  "analyst_data": {
+    "keybanc_initiated_date": "2026-06-22",
+    "keybanc_action": "Initiated",
+    "keybanc_rating": "Sector Weight",
+    "price_target_avg": 187.80,
+    "price_target_low": 62.00,
+    "price_target_high": 310.00,
+    "consensus_rating": "Moderate Buy",
+    "1y_target_est": 187.80,
+    "analyst_count_note": "Limited post-IPO coverage"
+  },
+  
+  "news_items": [
+    {
+      "date": "2026-06-22",
+      "headline": "SPCX drops 16.43% ($30.40) - second largest single-day value decline for US company",
+      "source": "Benzinga, Yahoo Finance",
+      "impact": "Major",
+      "details": "Stock fell to $154.60, below IPO day close of $160.95. Lost ~$400B in market cap in one day."
+    },
+    {
+      "date": "2026-06-22",
+      "headline": "Keybanc initiates coverage on SPCX with Sector Weight rating",
+      "source": "Yahoo Finance",
+      "impact": "Neutral",
+      "details": "First analyst initiation post-IPO"
+    },
+    {
+      "date": "2026-06-22",
+      "headline": "SpaceX buying Cursor for $60 billion",
+      "source": "Yahoo Finance/MarketBeat",
+      "impact": "Mixed",
+      "details": "Major acquisition announcement adding to AI/capex concerns"
+    },
+    {
+      "date": "2026-06-21",
+      "headline": "SpaceX shares soared post-IPO - can the rally continue?",
+      "source": "Motley Fool",
+      "impact": "Neutral",
+      "details": "Stock at ~$201.80 on June 16 before pullback. Analysts examine Starlink ARPU trends and AI profitability path."
+    },
+    {
+      "date": "2026-06-19",
+      "headline": "SPCX Falls 1.82%, trades below MA at $186.98",
+      "source": "Vantage Markets",
+      "impact": "Minor",
+      "details": "Technical analysis noted price below moving average"
+    },
+    {
+      "date": "2026-06-12",
+      "headline": "SPCX IPO opens at $150, closes at $160.95 (+19%)",
+      "source": "Forbes, various",
+      "impact": "Historical",
+      "details": "Largest IPO in history: 555.6M shares at $135, raised $75B, initial valuation $1.77T"
+    }
+  ],
+  
+  "starship_status": {
+    "flight_12_date": "2026-05-22",
+    "flight_12_result": "Broadly successful - V3 vehicle reached space, survived reentry, controlled landing",
+    "flight_13_scheduled": "2026-07-30",
+    "flight_13_target": "July 2026",
+    "version": "V3 (Version 3)",
+    "note": "Starship V3 testing ongoing"
+  },
+  
+  "macro_environment": {
+    "note": "Macro data to be fetched separately; VIX, Fed rates, DXY indicators needed",
+    "spxc_still_ipo_ramp_period": true,
+    "ipo_lockup_period_months": 6
+  }
+}

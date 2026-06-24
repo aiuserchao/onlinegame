@@ -1,0 +1,147 @@
+{
+  "report_date": "2026-06-23",
+  "modeling_time_utc": "2026-06-23T00:42:00Z",
+  "layer": "3_model",
+
+  "valuation_metrics": {
+    "market_cap": 2440000000000,
+    "shares_outstanding_est": 15780000000,
+    "enterprise_value": 2450000000000,
+    "revenue_ttm": 19300000000,
+    "revenue_2025e": 23000000000,
+    "revenue_2026e_conservative": 28000000000,
+    "revenue_2026e_moderate": 32200000000,
+    "revenue_2026e_bull": 36800000000,
+    "ps_ratio_ttm": 125.33,
+    "ps_forward_conservative": 87.14,
+    "ps_forward_moderate": 75.78,
+    "ps_forward_bull": 66.30,
+    "ev_to_revenue_ttm": 127.00,
+    "ev_to_ebitda": 1300,
+    "pe_ttm": "N/A (negative earnings)",
+    "eps_ttm": -0.67,
+    "dividend_yield": 0,
+    "debt_to_equity": 73.60,
+    "net_cash_position": 100800000000,
+    "net_debt": -100800000000
+  },
+
+  "comparables_analysis": {
+    "spacex_ps_ttm": 125.33,
+    "spacex_forward_ps_moderate": 75.78,
+    "tesla_ps": 8.5,
+    "amazon_ps": 4.0,
+    "nvidia_ps": 35,
+    "palantir_ps": 20,
+    "comparable_avg_ps": 16.88,
+    "spacex_premium_to_avg": "7.4x",
+    "spacex_premium_justification": "Highest growth + Starlink monopoly + Starship optionality + Musk premium",
+    "implied_fair_ps_if_growth_normalizes": "40-60x (at 40-60% growth)"
+  },
+
+  "technical_indicators": {
+    "price": 154.60,
+    "ma_20_approx": 175.00,
+    "ma_50_approx": 163.00,
+    "ma_200_approx": 145.00,
+    "ma_status": "Bearish - price below 20MA and 50MA; above 200MA",
+    "price_vs_20ma": -11.7,
+    "price_vs_50ma": -5.2,
+    "price_vs_200ma": 6.6,
+    "rsi_14_approx": 28,
+    "rsi_status": "Oversold (<30)",
+    "macd_line_approx": -3.5,
+    "macd_signal_approx": -2.0,
+    "macd_histogram": -1.5,
+    "macd_status": "Bearish - negative histogram",
+    "volume_today": 165553299,
+    "volume_avg": 288941860,
+    "volume_ratio": 0.573,
+    "volume_status": "Low - 57% of average. Distribution without panic.",
+    "support_1": 150.00,
+    "support_1_label": "Psychological + 52-week low nearby ($149.34)",
+    "support_2": 140.00,
+    "support_2_label": "IPO price + gap-fill zone",
+    "resistance_1": 165.00,
+    "resistance_1_label": "Recent support turned resistance",
+    "resistance_2": 176.69,
+    "resistance_2_label": "Today's high",
+    "resistance_3": 185.00,
+    "resistance_3_label": "Yesterday's close - major resistance"
+  },
+
+  "scenario_analyses": {
+    "bull_case": {
+      "probability": 0.40,
+      "description": "Starship clears FAA + Starlink 15M+ subs by end-2026 + multiple expansion",
+      "revenue_2026e": 36800000000,
+      "target_multiple": 60,
+      "target_price_low": 250,
+      "target_price_high": 300,
+      "upside_from_current": "61-94%"
+    },
+    "base_case": {
+      "probability": 0.45,
+      "description": "Starship returns mid-year + Starlink maintains 50% growth + growth normalizes",
+      "revenue_2026e": 32200000000,
+      "target_multiple": 50,
+      "target_price_low": 195,
+      "target_price_high": 220,
+      "upside_from_current": "26-42%"
+    },
+    "bear_case": {
+      "probability": 0.15,
+      "description": "Starship delayed past 2026 + Starlink growth slows to 25% + macro deterioration",
+      "revenue_2026e": 28000000000,
+      "target_multiple": 30,
+      "target_price_low": 95,
+      "target_price_high": 120,
+      "downside_from_current": "22-39%"
+    }
+  },
+
+  "category_scores": {
+    "valuation_score": {
+      "score": 38,
+      "rationale": "125x P/S TTM is extreme. Even forward P/S 75x (at 67% growth) is very elevated vs peers. Stars at 8-10x, Amazon 4x. Some premium justified but risk/reward neutral-to-negative at current levels."
+    },
+    "macro_score": {
+      "score": 45,
+      "rationale": "Fed turned hawkish (dot plot implies hikes, not cuts in 2026). Higher-for-longer rates negative for high-multiple growth stocks. VIX elevated post-selloff. Limited positive macro catalysts near-term."
+    },
+    "technical_score": {
+      "score": 35,
+      "rationale": "Deeply oversold (RSI 28) but price below 20MA and 50MA. MACD bearish. Volume light on decline = distribution, not capitulation. No clear buy signal yet. Support at $150."
+    },
+    "institutional_score": {
+      "score": 55,
+      "rationale": "Keybanc initiated Strong Buy on June 22. Analyst consensus target $187.80. IPO created many new holders. Stock down 24% from peak may attract institutional interest. Score limited by lack of broader coverage yet."
+    },
+    "catalyst_score": {
+      "score": 72,
+      "rationale": "Starship V3 progress ongoing (full-stack reusability). Starlink at 10M+ subs growing 50% YoY. Massive $100.8B cash. Government contracts continuing. Score reduced by FAA grounding and post-IPO selloff overhang."
+    }
+  },
+
+  "overall_scores": {
+    "composite_score": 49,
+    "composite_formula": "avg(valuation 38, macro 45, technical 35, institutional 55, catalyst 72)",
+    "score_interpretation": "Middle of the road - significant risks balanced with substantial upside potential"
+  },
+
+  "key_metrics_table": {
+    "headers": ["Metric", "Value", "Assessment"],
+    "rows": [
+      ["P/S TTM", "125.3x", "Extremely High ⚠️"],
+      ["P/S Forward (moderate)", "75.8x", "Very High ⚠️"],
+      ["RSI (14)", "28", "Oversold 🟡"],
+      ["MACD", "Negative", "Bearish 🔴"],
+      ["Volume/Avg Vol", "57%", "Low - Distribution 🔴"],
+      ["Price vs 52W High", "-31.4%", "Significant Pullback 🔴"],
+      ["Cash Position", "$100.8B", "Very Strong 🟢"],
+      ["Revenue Growth YoY", "+31.7%", "Strong 🟢"],
+      ["Starlink % Revenue", "61%", "Dominant 🟢"],
+      ["Fed Rate Stance", "Hawkish", "Headwind 🔴"]
+    ]
+  }
+}

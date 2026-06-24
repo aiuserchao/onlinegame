@@ -1,0 +1,105 @@
+{
+  "model_timestamp": "2026-06-16T23:03:30Z",
+
+  "valuation_metrics": {
+    "market_cap_trillion": 2.642,
+    "enterprise_value_trillion": 2.65,
+    "revenue_ttm_billion": 19.3,
+    "forward_revenue_40pct_growth_billion": 27.02,
+    "forward_revenue_60pct_growth_billion": 30.88,
+    "ps_ttm": 130.41,
+    "ps_forward_40pct": 97.8,
+    "ps_forward_60pct": 85.6,
+    "ev_ebitda": 1340,
+    "eps_ttm": -0.67
+  },
+
+  "comparable_analysis": {
+    "comps": [
+      {"ticker": "SPCX", "ps_ttm": 130.41, "ps_fwd_est": 91.7, "growth_est": "40-60%", "notes": "Launch垄断+星链"},
+      {"ticker": "TSLA", "ps_ttm": 8.5, "ps_fwd_est": 7.5, "growth_est": "15-20%", "notes": "电动车+能源"},
+      {"ticker": "AMZN", "ps_ttm": 4.0, "ps_fwd_est": 3.5, "growth_est": "10-15%", "notes": "电商+云"},
+      {"ticker": "NVDA", "ps_ttm": 35.0, "ps_fwd_est": 28.0, "growth_est": "30-40%", "notes": "AI/GPU垄断"},
+      {"ticker": "PLTR", "ps_ttm": 20.0, "ps_fwd_est": 15.0, "growth_est": "20-25%", "notes": "数据分析"}
+    ],
+    "relative_assessment": "SPCX trades at 15-16x the P/S multiple of TSLA, 33x AMZN, 3.7x NVDA on TTM basis"
+  },
+
+  "technical_indicators": {
+    "sma_20_estimate": 168.0,
+    "sma_50_estimate": 155.0,
+    "sma_200_estimate": 142.0,
+    "price_vs_sma20": "+20.1%",
+    "price_vs_sma50": "+30.2%",
+    "price_vs_sma200": "+42.1%",
+    "rsi_14_estimate": 72,
+    "rsi_interpretation": "接近超买区域但尚未极端",
+    "macd_line_estimate": 12.5,
+    "macd_signal_estimate": 8.2,
+    "macd_histogram": "+4.3",
+    "macd_interpretation": "阳性，动能确认",
+    "volume_today": 315224407,
+    "volume_avg": 384879900,
+    "volume_ratio": 0.819,
+    "volume_interpretation": "上涨日成交量低于平均，轻微警示",
+    "after_hours": {
+      "price": 205.00,
+      "change_pct": 1.58,
+      "interpretation": "盘后积极，买家持续入场"
+    }
+  },
+
+  "support_resistance": {
+    "support_1": 195.00,
+    "support_2": 192.50,
+    "support_3": 185.00,
+    "resistance_1": 225.64,
+    "resistance_2": 240.00,
+    "resistance_3": 250.00,
+    "key_level_notes": "225.64为52周/历史新高，突破后已转化为支撑"
+  },
+
+  "category_scores": {
+    "valuation_score": {
+      "raw": 18,
+      "rationale": "130倍P/S极度昂贵；即使40%增长仍97倍，显著高于所有可比公司；CFRA目标$115距离现价75%下方构成结构性风险"
+    },
+    "macro_score": {
+      "raw": 58,
+      "rationale": "FOMC 2026年维持利率不变预期；VIX在18-22区间；流动性充足；美元DXY 104-106区间；整体中性略微支持"
+    },
+    "technical_score": {
+      "raw": 71,
+      "rationale": "价格远高于所有均线，新高突破；但RSI 72接近超买+成交量低于平均是警示；盘后$205显示买盘持续"
+    },
+    "institutional_score": {
+      "raw": 60,
+      "rationale": "CFRA唯一卖出($115)属明显方向错误；平均目标$164低于现价19%；机构持仓估计30-50%+但覆盖有限"
+    },
+    "catalyst_score": {
+      "raw": 82,
+      "rationale": "Starship V3首飞成功(IFT-12)；星链12M用户(目标25M)；NASA/DoD合同稳健；Q1盈利$1.2B；IPO后动能充足"
+    }
+  },
+
+  "composite_score": {
+    "weighted": 56,
+    "weights": {
+      "valuation": 0.15,
+      "macro": 0.15,
+      "technical": 0.20,
+      "institutional": 0.20,
+      "catalyst": 0.30
+    },
+    "calculation": "18×0.15 + 58×0.15 + 71×0.20 + 60×0.20 + 82×0.30 = 2.7 + 8.7 + 14.2 + 12.0 + 24.6 = 62.2 → 62"
+  },
+
+  "performance_data": {
+    "ytd_return": 0.3453,
+    "spx_ytd": 0.0973,
+    "excess_return_ytd": 0.248,
+    "post_ipo_return": 0.495,
+    "trading_days_since_ipo": 4,
+    "note": "从IPO价$135涨至$201.80仅用4个交易日，+49.5%"
+  }
+}

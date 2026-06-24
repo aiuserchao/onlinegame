@@ -1,0 +1,90 @@
+{
+  "validation_timestamp": "2026-06-16T23:03:00Z",
+  "data_quality": "high",
+  "validation_notes": [],
+
+  "price_validation": {
+    "current_price": 201.80,
+    "within_52week_range": true,
+    "52week_high": 225.64,
+    "52week_low": 149.34,
+    "at_52week_high": false,
+    "volume_positive": true,
+    "volume": 315224407,
+    "avg_volume": 384879900,
+    "volume_ratio": 0.819,
+    "validation_status": "pass",
+    "flags": ["Volume below average on up day - minor yellow flag"]
+  },
+
+  "news_validation": {
+    "total_items": 10,
+    "after_ipo_only": false,
+    "relevance_filtered": 10,
+    "timestamp_check": "most recent June 15-16, consistent",
+    "deduplication": "pass",
+    "validation_status": "pass",
+    "notes": [
+      "IPO news still relevant as recent event",
+      "Starship Flight 12 data from May 22 - still fresh context",
+      "Starlink subscriber data from multiple sources consistent (10.3M Q1, 12M June)"
+    ]
+  },
+
+  "fundamentals_validation": {
+    "revenue_plausible": true,
+    "cash_positive": true,
+    "debt_equity_reasonable": true,
+    "cross_checks": [
+      "Q1 2026: $4.694B revenue → extrapolated TTM ~$18.8B, vs reported $19.3B (reasonable)",
+      "Starlink 12M subscribers × ~$90 ARPPU × 12 = ~$13B revenue (reasonable portion of total)",
+      "Total cash $23.68B exceeds annual burn projections → healthy balance sheet",
+      "CFRA target $115 vs current $201.80 → 75% above, outlier view"
+    ],
+    "validation_status": "pass",
+    "flags": ["Negative EPS (-$0.67) expected for growth co, not an anomaly"]
+  },
+
+  "cleaned_price": {
+    "primary": 201.80,
+    "after_hours": 205.00,
+    "prev_close": 192.50,
+    "day_high": 225.64,
+    "day_low": 195.13,
+    "direction": "up",
+    "change_pct": 4.83
+  },
+
+  "cleaned_fundamentals": {
+    "revenue_ttm": 19300000000,
+    "market_cap_trillion": 2.642,
+    "ps_ttm": 130.41,
+    "cash_billions": 23.68,
+    "debt_equity_pct": 73.6,
+    "eps_ttm": -0.67
+  },
+
+  "cleaned_news": [
+    {
+      "title": "SPCX IPO Debut - Largest Ever",
+      "source": "multiple",
+      "date": "2026-06-12",
+      "relevance": "high",
+      "price_impact_potential": "high"
+    },
+    {
+      "title": "Starlink 12M Subscribers",
+      "source": "abit.ee",
+      "date": "2026-06-15",
+      "relevance": "high",
+      "price_impact_potential": "medium"
+    },
+    {
+      "title": "CFRA Initiated Sell - PT $115",
+      "source": "CFRA",
+      "date": "2026-06-12",
+      "relevance": "high",
+      "price_impact_potential": "low (outlier view)"
+    }
+  ]
+}

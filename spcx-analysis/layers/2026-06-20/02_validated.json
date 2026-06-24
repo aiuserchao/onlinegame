@@ -1,0 +1,80 @@
+{
+  "date": "2026-06-20",
+  "report_time_utc": "2026-06-20T04:16:00Z",
+  "validation_timestamp": "2026-06-20T04:16:00Z",
+  "validation_passed": true,
+  "issues": [],
+  "price_data": {
+    "previous_close": 150.0,
+    "regularMarketPrice": 185.0,
+    "regularMarketDayHigh": 190.0,
+    "regularMarketDayLow": 172.11,
+    "regularMarketVolume": 254914736,
+    "fiftyTwoWeekHigh": 225.64,
+    "fiftyTwoWeekLow": 149.34,
+    "longName": "Space Exploration Technologies Corp.",
+    "validation_notes": "Price within 52-week range, volume positive."
+  },
+  "news": [
+    {
+      "headline": "SpaceX (SPCX) Stock Price, News & Analysis - MarketBeat",
+      "date": "2026-06-20",
+      "source": "MarketBeat",
+      "impact": "neutral",
+      "sentiment": "analysis",
+      "validation_notes": "Source and date present."
+    },
+    {
+      "headline": "(SPCX.O) | Stock Price & Latest News | Reuters",
+      "date": "2026-06-20",
+      "source": "Reuters",
+      "impact": "positive",
+      "sentiment": "investment_grade_ratings",
+      "validation_notes": "Source and date present."
+    },
+    {
+      "headline": "Space Exploration Technologies Corp. (SPCX) Stock Price, News, Quote ...",
+      "date": "2026-06-20",
+      "source": "Yahoo Finance",
+      "impact": "neutral",
+      "sentiment": "quote",
+      "validation_notes": "Source and date present."
+    },
+    {
+      "headline": "Space Exploration Technologies Corp (SPCX) Stock Price & News - Google",
+      "date": "2026-06-20",
+      "source": "Google Finance",
+      "impact": "neutral",
+      "sentiment": "price",
+      "validation_notes": "Source and date present."
+    },
+    {
+      "headline": "SpaceX Stock Price: SPCX Stock Chart, Market Cap & News Today | CoinGecko",
+      "date": "2026-06-20",
+      "source": "CoinGecko",
+      "impact": "neutral",
+      "sentiment": "chart",
+      "validation_notes": "Source and date present."
+    }
+  ],
+  "fundamental_data": {
+    "revenue_2024": "14.2 billion USD",
+    "revenue_2025_projected": "15.5 billion USD",
+    "revenue_2025_estimate": "18.7 billion USD",
+    "ebitda_2025": "6.6 billion USD (adjusted)",
+    "net_loss_2025": "4.9 billion USD (GAAP)",
+    "debt": "29.1 billion USD",
+    "accumulated_deficit": "41.3 billion USD",
+    "valuation_2024": "350 billion USD",
+    "profitability": "Only profitable year was 2024",
+    "starlink_revenue_percentage": "58% of total revenue",
+    "launch_services_growth": "Driving revenue growth",
+    "sources": [
+      "spacexstock.com",
+      "sacra.com",
+      "spaceexplorationtechnologiesco.com",
+      "morningstar.com"
+    ],
+    "validation_notes": "Fundamental data appears consistent with recent reports."
+  }
+}

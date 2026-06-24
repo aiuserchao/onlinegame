@@ -1,0 +1,14 @@
+{
+  "date": "2026-06-18",
+  "price_data": {
+    "current_estimate": 203,
+    "after_hours": 195.17,
+    "day_change_pct": -5,
+    "ps_ratio_ttm": 119,
+    "ps_ratio_forward_40pct": 85,
+    "ps_ratio_forward_60pct": 75,
+    "valuation_score": 18,
+    "technical_score": 58,
+    "rsi_estimate": 65
+  }
+}

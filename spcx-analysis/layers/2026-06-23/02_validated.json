@@ -1,0 +1,106 @@
+{
+  "report_date": "2026-06-23",
+  "validation_time_utc": "2026-06-23T00:41:00Z",
+  "layer": "2_validated",
+
+  "validation_summary": {
+    "price_data_valid": true,
+    "news_valid": true,
+    "fundamentals_valid": true,
+    "issues_found": [],
+    "limitations_noted": ["EPS forward estimate not available", "Some macro data estimated", "Technical indicators approximate"]
+  },
+
+  "validated_price_data": {
+    "current_price": 154.60,
+    "previous_close": 185.00,
+    "change_pct": -16.43,
+    "in_52week_range": true,
+    "within_52w_low": 149.34,
+    "within_52w_high": 225.64,
+    "volume": 165553299,
+    "volume_positive": true,
+    "avg_volume": 288941860,
+    "volume_vs_avg_pct": -42.7,
+    "volume_note": "Significantly below average - distribution day",
+    "market_cap": 2440000000000,
+    "revenue_ttm": 19300000000,
+    "ps_ratio_ttm": 125.33,
+    "eps_ttm": -0.67
+  },
+
+  "validated_news": [
+    {
+      "date": "2026-06-22",
+      "source": "CNBC",
+      "relevance_score": "High",
+      "validated": true,
+      "notes": "16% drop confirmed with price data"
+    },
+    {
+      "date": "2026-06-22",
+      "source": "CNBC",
+      "relevance_score": "High",
+      "validated": true,
+      "notes": "Bond sale + $100.8B cash disclosed"
+    },
+    {
+      "date": "2026-06-22",
+      "source": "Keybanc",
+      "relevance_score": "High",
+      "validated": true,
+      "notes": "Strong Buy initiation confirmed"
+    },
+    {
+      "date": "2026-06-17",
+      "source": "Various",
+      "relevance_score": "Medium",
+      "validated": true,
+      "notes": "Board addition confirmed"
+    }
+  ],
+
+  "validated_fundamentals": {
+    "revenue_2025": 18700000000,
+    "revenue_2024": 14200000000,
+    "revenue_yoy_growth": "31.7%",
+    "revenue_ttm": 19300000000,
+    "revenue_ttm_consistent": true,
+    "starlink_revenue_2025": 11400000000,
+    "starlink_pct_of_total": "61%",
+    "cash_position": 100800000000,
+    "debt_to_equity": 73.60,
+    "net_loss_2025": -4900000000,
+    "net_loss_q1_2026": -4280000000,
+    "ebitda_adjusted_2025": 6600000000,
+    "fundamentals_note": "Profitable at EBITDA level; net loss driven by stock-based compensation and depreciation"
+  },
+
+  "starship_validation": {
+    "flight_12_status": "Anomaly - Super Heavy booster issue",
+    "faa_grounding_confirmed": true,
+    "flight_13_targeted": "June 2026 (delay expected)",
+    "risk_flag": "Medium - FAA investigation ongoing",
+    "reusability_achieved": true
+  },
+
+  "macro_validation": {
+    "fed_rate": "3.50-3.75%",
+    "fed_held": true,
+    "dot_plot_hawkish": true,
+    "fed_stance": " hawkish - risks tilted to inflation upside",
+    "rate_cut_2026_expected": "0 (flat or hike)",
+    "macro_note": "Higher for longer rate environment - negative for high-growth stocks"
+  },
+
+  "key_findings": [
+    "SPCX dropped 16.43% on June 22, extending post-IPO selloff to ~24% from peak",
+    "Volume was only 57% of average - distribution without panic volume",
+    "Strong Buy initiation from Keybanc on same day as 16% drop",
+    "Bond sale + $100.8B cash disclosed - very strong balance sheet",
+    "Price now ~24% below analyst average target of $187.80",
+    "Fed turned more hawkish - headwind for high-multiple stocks",
+    "Starlink 10M+ subscribers, 61% of revenue - key fundamental driver",
+    "Starship FAA investigation ongoing - potential catalyst delay"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-06-18",
+  "report_time_utc": "2026-06-18T17:00:00Z",
+  "price_data": {
+    "previous_close_reference": 213.59,
+    "current_day_status": "DOWN ~5% on Thursday",
+    "after_hours_price": 195.17,
+    "intraday_low": "around $205 area",
+    "change_from_ipo_pct": "+44.6% (from $135 IPO)",
+    "notes": "Pullback after explosive post-IPO rally"
+  },
+  "news": [
+    {
+      "headline": "SpaceX stock tanking around 5% on Thursday",
+      "date": "2026-06-18",
+      "source": "Invezz",
+      "impact": "negative_short_term",
+      "sentiment": "corrective_pullback"
+    },
+    {
+      "headline": "SpaceX Demand Is 'Off the Charts,' Says Schwab CEO",
+      "date": "2026-06-18",
+      "source": "Bloomberg Markets and Finance",
+      "impact": "positive",
+      "sentiment": "bullish_long_term"
+    },
+    {
+      "headline": "Roth 'aggressive' buyer of Calix amid Starlink concerns",
+      "date": "2026-06-18",
+      "source": "TheFly/TipRanks",
+      "impact": "neutral",
+      "notes": "Starlink minimal competitive threat to Calix, actually spurring demand"
+    }
+  ],
+  "catalyst_status": {
+    "starship": "V3 development ongoing, SpaceX updates page confirms integral to Mars mission",
+    "starlink": "Continued expansion, 29 satellites launched June 12",
+    "overall": "Positive long-term, short-term profit taking"
+  }
+}

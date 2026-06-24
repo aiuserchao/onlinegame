@@ -1,0 +1,212 @@
+{
+  "report_date": "2026-06-22",
+  "report_time_utc": "2026-06-22T00:30:00Z",
+  "source": "Yahoo Finance, web searches, SpaceX IR",
+  "data_fetch_timestamp": "2026-06-22T00:32:00Z",
+
+  "price_data": {
+    "symbol": "SPCX",
+    "exchange": "NASDAQ",
+    "current_price": 185.00,
+    "currency": "USD",
+    "previous_close": 191.82,
+    "open": 188.40,
+    "bid": 184.17,
+    "ask": 200.00,
+    "bid_size": 5000,
+    "ask_size": 100,
+    "days_high": 190.00,
+    "days_low": 172.11,
+    "52_week_high": 225.64,
+    "52_week_low": 149.34,
+    "volume": 272126781,
+    "avg_volume": 288941860,
+    "after_hours_price": 176.00,
+    "after_hours_change_pct": -4.86,
+    "days_change_pct": -3.56,
+    "price_note": "At close June 18, 2026. Overnight June 21: $176 (-4.86%)"
+  },
+
+  "market_data": {
+    "market_cap": 2437000000000,
+    "market_cap_formatted": "$2.44T",
+    "enterprise_value": 2450000000000,
+    "enterprise_value_formatted": "$2.45T"
+  },
+
+  "fundamentals": {
+    "revenue_ttm": 19300000000,
+    "revenue_ttm_formatted": "$19.3B",
+    "revenue_2025": 18700000000,
+    "revenue_2025_formatted": "$18.7B",
+    "revenue_growth_yoy": 0.33,
+    "revenue_growth_yoy_formatted": "+33%",
+    "net_income_ttm": -9360000000,
+    "net_income_ttm_formatted": "-$9.36B",
+    "eps_ttm": -0.67,
+    "profit_margin": -0.45,
+    "total_cash": 23680000000,
+    "total_cash_formatted": "$23.68B",
+    "total_debt_equity_ratio": 0.736,
+    "pe_ratio_ttm": null,
+    "forward_pe": null,
+    "peg_ratio": null,
+    "price_sales_ttm": 125.33,
+    "price_book": 70.58,
+    "ev_revenue": 127.0,
+    "ev_ebitda": 1300,
+    "dividend_yield": null,
+    "starlink_revenue_2025": 11390000000,
+    "starlink_revenue_formatted": "$11.39B",
+    "starlink_revenue_pct_total": 0.61,
+    "starlink_operating_income_2025": 4500000000,
+    "starlink_operating_income_formatted": "$4.5B",
+    "q1_2026_loss": 4300000000,
+    "q1_2026_loss_formatted": "$4.3B",
+    "starlink_q1_2026_ebitda": 2100000000
+  },
+
+  "ipo_data": {
+    "ipo_date": "2026-06-12",
+    "ipo_price": 135.00,
+    "shares_offered": 555555555,
+    "shares_offered_formatted": "555,555,555",
+    "capital_raised": 75000000000,
+    "capital_raised_formatted": "$75B",
+    "ipo_valuation": 1770000000000,
+    "ipo_valuation_formatted": "$1.77T",
+    "ipo_note": "Largest IPO in US history, doubling Saudi Aramco 2019 record"
+  },
+
+  "starlink_metrics": {
+    "subscribers_feb_2026": 10000000,
+    "subscribers_feb_2026_formatted": "10M+",
+    "subscribers_end_2024": 4400000,
+    "subscribers_end_2023": 2300000,
+    "subscribers_end_2025": 8900000,
+    "countries_covered": 155,
+    "people_reached": 3200000000,
+    "satellites_in_orbit": 8800,
+    "satellite_target": 12000,
+    "revenue_2025": 11400000000,
+    "revenue_growth_yoy": 0.50,
+    "revenue_pct_of_total": 0.61
+  },
+
+  "starship_status": {
+    "flight_13_target": "June 2026 - orbital attempt",
+    "flight_12_date": "May 22, 2026",
+    "flight_12_result": "Anomaly during flight",
+    "flight_13_type": "Orbital mission",
+    "flight_13_details": "Second Starship V3 flight, first attempt at true orbital trajectory",
+    "faa_status": "Temporarily grounded pending investigation",
+    "artemis_impact": "NASA Artemis lunar mission schedule depends on Starship readiness",
+    "mars_prep": "2026 marks transition toward operational missions including Mars prep"
+  },
+
+  "analyst_data": {
+    "price_targets": {
+      "low": 62.00,
+      "average": 187.80,
+      "high": 310.00,
+      "current": 185.00
+    },
+    "recommendations": "Strong Buy, Buy, Hold, Underperform, Sell",
+    "latest_rating": {
+      "date": "2026-06-18",
+      "firm": "Oppenheimer",
+      "action": "Maintains",
+      "rating": "Outperform",
+      "previous_target": 190,
+      "new_target": 250,
+      "price_change_note": "Price target raised from $190 to $250"
+    }
+  },
+
+  "returns": {
+    "ytd": 0.2333,
+    "ytd_formatted": "+23.33%",
+    "one_year": 0.2333,
+    "one_year_formatted": "+23.33%",
+    "three_year": 0.7010,
+    "three_year_formatted": "+70.10%",
+    "five_year": 0.8002,
+    "five_year_formatted": "+80.02%",
+    "benchmark": "S&P 500",
+    "note": "Stock only IPO'd June 12, 2026 - returns reflect index proxy or back-calculated"
+  },
+
+  "macro_data": {
+    "fed_funds_rate": {
+      "current": 0.0375,
+      "range": "3.50%-3.75%",
+      "effective_rate": 0.0363,
+      "prime_rate": 0.0675
+    },
+    "fed_decision": {
+      "date": "2026-06-17",
+      "action": "Held steady",
+      "meeting_number": "4th of year",
+      "new_chair": "Kevin Warsh (first meeting)",
+      "inflation_context": "Persistent inflation and strong labor data drove year-end rate hike expectations"
+    },
+    "vix": {
+      "current": 16.36,
+      "date": "2026-06-18",
+      "previous_close": 18.73,
+      "change_pct": -0.1265,
+      "change_pct_formatted": "-12.65%",
+      "june_12_ipo_day": 17.68,
+      "vix_drop_on_ipo": "VIX dropped 9% on June 12 on Iran deal hopes and SpaceX IPO debut",
+      "sentiment": "Declining fear, risk-on environment"
+    }
+  },
+
+  "news": [
+    {
+      "date": "2026-06-18",
+      "title": "SpaceX Just Went Public - What Smart Investors Are Doing Now",
+      "source": "The Motley Fool",
+      "url": "https://www.fool.com/investing/2026/06/18/spacex-public-what-smart-invest-spcx-stock/",
+      "summary": "SpaceX IPO is largest in history. Analysis of investor positioning post-IPO."
+    },
+    {
+      "date": "2026-06-19",
+      "title": "SpaceX Stock Today: SPCX Falls 1.82% — Can $185 Hold?",
+      "source": "Vantage Markets",
+      "url": "https://www.vantagemarkets.com/market-analysis/spacex-spcx-stock-price-analysis-june-19-2026/",
+      "summary": "SPCX at $184.98, down 1.82%. Price trades below MA at $186.98."
+    },
+    {
+      "date": "2026-06-11",
+      "title": "SpaceX IPO Pricing Announced",
+      "source": "SpaceX IR",
+      "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Pricing-of-Initial-Public-Offering",
+      "summary": "555,555,555 shares at $135/share. Expected to begin trading June 12, 2026."
+    },
+    {
+      "date": "2026-06-12",
+      "title": "SPCX Begins Trading - $135/Share, $75 Billion Raised",
+      "source": "AIToolsRecap",
+      "url": "https://aitoolsrecap.com/Blog/spacex-spcx-ipo-75-billion-135-per-share-june-12-2026",
+      "summary": "$1.77T valuation. Largest IPO in US history, doubling Saudi Aramco 2019 record."
+    },
+    {
+      "date": "2026-06",
+      "title": "Starship Flight 13 Targets Orbital Mission in June 2026",
+      "source": "All Things Elon",
+      "url": "https://www.allthings-elon.com/articles/spacex-starship-flight-13-orbital-june-2026",
+      "summary": "Second Starship V3 test flight targeting orbital trajectory - critical for NASA Artemis and Mars missions."
+    }
+  ],
+
+  "data_quality_notes": [
+    "SPCX IPO'd June 12, 2026 - limited trading history (only 7 trading days of data)",
+    "Current date June 22 means last trading data is June 18 (weekend gap)",
+    "After-hours price shows continued weakness: $176 vs close $185 (-4.86%)",
+    "No traditional P/E ratio due to negative earnings",
+    "RSI, MACD, MA calculations require more historical data for accuracy",
+    "Analyst coverage limited - only Oppenheimer visible on Yahoo Finance page",
+    "VIX data reflects June 18 close - check for overnight developments"
+  ]
+}

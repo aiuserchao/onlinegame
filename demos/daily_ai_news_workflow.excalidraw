@@ -1,0 +1,334 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.9.19",
+  "elements": [
+    {
+      "type": "rectangle",
+      "version": 107,
+      "versionNonce": 1345618051,
+      "isDeleted": false,
+      "id": "1",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": -180,
+      "y": -100,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#f0f8ff",
+      "width": 200,
+      "height": 80,
+      "seed": 1123581321,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "text": "Daily AI News Cron Job\n(8:00 AM EST)",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "baseline": 18
+    },
+    {
+      "type": "rectangle",
+      "version": 107,
+      "versionNonce": 1972164096,
+      "isDeleted": false,
+      "id": "2",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 30,
+      "y": -120,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#fff0f0",
+      "width": 220,
+      "height": 100,
+      "seed": 1234567890,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "text": "Web Search & Fetch\n• TechCrunch\n• MIT News\n• Reuters\n• Google News\n• AI News Sites",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "baseline": 18
+    },
+    {
+      "type": "rectangle",
+      "version": 107,
+      "versionNonce": 1420724030,
+      "isDeleted": false,
+      "id": "3",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 270,
+      "y": -100,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#f0fff0",
+      "width": 200,
+      "height": 80,
+      "seed": 9876543210,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "text": "AI News Digest\nFormatted Report",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "baseline": 18
+    },
+    {
+      "type": "rectangle",
+      "version": 107,
+      "versionNonce": 1159135095,
+      "isDeleted": false,
+      "id": "4",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 500,
+      "y": -100,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#fffff0",
+      "width": 180,
+      "height": 80,
+      "seed": 5555555555,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "text": "Telegram Delivery\nTo Kevin Fan",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "baseline": 18
+    },
+    {
+      "type": "arrow",
+      "version": 445,
+      "versionNonce": 1987350921,
+      "isDeleted": false,
+      "id": "5",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": -50,
+      "y": -60,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 60,
+      "height": 0,
+      "seed": 1111111111,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "startBinding": {
+        "elementId": "1",
+        "focus": 0.23529411764705882,
+        "gap": 8
+      },
+      "endBinding": {
+        "elementId": "2",
+        "focus": 0.4830917874396135,
+        "gap": 8
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          60,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startArrowheadPoint": null,
+      "endArrowheadPoint": null
+    },
+    {
+      "type": "arrow",
+      "version": 445,
+      "versionNonce": 1700415019,
+      "isDeleted": false,
+      "id": "6",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 170,
+      "y": -70,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 80,
+      "height": 0,
+      "seed": 2222222222,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "startBinding": {
+        "elementId": "2",
+        "focus": 0.7151898734177215,
+        "gap": 8
+      },
+      "endBinding": {
+        "elementId": "3",
+        "focus": 0.2848101265822785,
+        "gap": 8
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          80,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startArrowheadPoint": null,
+      "endArrowheadPoint": null
+    },
+    {
+      "type": "arrow",
+      "version": 445,
+      "versionNonce": 1427384046,
+      "isDeleted": false,
+      "id": "7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 390,
+      "y": -60,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 90,
+      "height": 0,
+      "seed": 3333333333,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1780964000000,
+      "link": null,
+      "locked": false,
+      "startBinding": {
+        "elementId": "3",
+        "focus": 0.7151898734177215,
+        "gap": 8
+      },
+      "endBinding": {
+        "elementId": "4",
+        "focus": 0.2848101265822785,
+        "gap": 8
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          90,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startArrowheadPoint": null,
+      "endArrowheadPoint": null
+    }
+  ],
+  "appState": {
+    "theme": "light",
+    "viewBackgroundColor": "#ffffff",
+    "currentItemStrokeColor": "#1e1e1e",
+    "currentItemBackgroundColor": "#f0f8ff",
+    "currentItemFillStyle": "solid",
+    "currentItemStrokeWidth": 2,
+    "currentItemStrokeStyle": "solid",
+    "currentItemRoughness": 1,
+    "currentItemOpacity": 100,
+    "currentItemFontFamily": 1,
+    "currentItemFontSize": 20,
+    "currentItemTextAlign": "left",
+    "currentItemVerticalAlign": "top",
+    "currentItemShadow": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "blurRadius": 0,
+      "color": "#6e6e6e",
+      "opacity": 100
+    },
+    "gridSize": null,
+    "scale": 1
+  },
+  "files": {}
+}

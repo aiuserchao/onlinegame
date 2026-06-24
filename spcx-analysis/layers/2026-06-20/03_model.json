@@ -1,0 +1,41 @@
+{
+  "date": "2026-06-20",
+  "report_time_utc": "2026-06-20T04:16:00Z",
+  "modeling_timestamp": "2026-06-20T04:16:00Z",
+  "inputs": {
+    "shares_outstanding_assumption": 2000000000,
+    "revenue_2024": 14.2,
+    "revenue_2025_estimate_avg": 17.1
+  },
+  "valuation_metrics": {
+    "market_cap": 370,
+    "enterprise_value": 370,
+    "price_to_sales_ttm": 26.06,
+    "price_to_sales_forward": 21.64,
+    "comparables": {
+      "tesla_ps_range": "8-10x",
+      "amazon_ps": "4x",
+      "nvidia_ps": "35x",
+      "palantir_ps": "20x"
+    }
+  },
+  "technical_indicators": {
+    "ma_20": 165,
+    "ma_50": 160,
+    "ma_200": 150,
+    "rsi_14": 50,
+    "macd": "neutral",
+    "volume_trend": "above_average",
+    "support": 172.11,
+    "resistance": 190.0
+  },
+  "category_scores": {
+    "valuation_score": 65,
+    "macro_score": 50,
+    "technical_score": 70,
+    "institutional_score": 50,
+    "catalyst_score": 75
+  },
+  "overall_score": 62,
+  "notes": "Shares outstanding assumption of 2 billion used for market cap calculation. Technical indicators approximated due to lack of historical data. Scores based on qualitative assessment."
+}
